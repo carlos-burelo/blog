@@ -12,6 +12,6 @@
     "docs": true,
     // "public": true,
     ".gitignore": true,
-    "pnpm-lock.yaml": true,
+    // "pnpm-lock.yaml": true,
   }
 }
