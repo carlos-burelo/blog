@@ -1,0 +1,36 @@
+---
+title: Barra de desplazamiento personalizada
+lang: css
+---
+
+```scss
+:root {
+  --background: #1e1e1e;
+  --mid-radius: 10px;
+  --border-color: #2a2a2a;
+  --background-button-hover: #2a2a2a;
+}
+
+* {
+  &::-webkit-scrollbar-track {
+    background-color: var(--background);
+    border-radius: var(--mid-radius);
+  }
+
+  &::-webkit-scrollbar {
+    width: 20px;
+    border-radius: var(--mid-radius);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--border-color);
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+
+    &:hover {
+      background-color: var(--background-button-hover);
+    }
+  }
+}
+```

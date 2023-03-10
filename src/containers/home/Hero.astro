@@ -1,0 +1,23 @@
+<main class='hero'>
+  <span class='hi'>Hi, I&apos;m</span>
+  <h1 class='name'>Carlos Burelo</h1>
+  <h2 class='profession'>Software Engineer & Web Developer</h2>
+</main>
+
+<style lang='scss'>
+  .hero {
+    height: var(--heroHeight);
+    @include grid(center, flex-start);
+  }
+  .hi {
+    font-size: 1.5rem;
+  }
+  .name {
+    font-size: 5em;
+    font-weight: 700;
+  }
+  .profession {
+    font-weight: 500;
+    font-size: 2em;
+  }
+</style>

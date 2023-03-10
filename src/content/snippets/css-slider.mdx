@@ -1,0 +1,24 @@
+---
+title: Slider sin Javascript
+lang: css
+---
+
+```css
+.slider {
+  margin: 0 auto;
+  display: grid;
+  grid-auto-flow: column;
+  gap: 15px;
+  overflow-y: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-snap-align: start;
+}
+.slider::-webkit-scrollbar {
+  display: none;
+}
+.slide {
+  scroll-snap-align: center;
+  width: 350px;
+}
+```

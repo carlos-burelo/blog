@@ -1,0 +1,22 @@
+---
+title: Cargar webfonts usando vercel
+lang: javascript
+---
+
+```json title="./vercel.json"
+{
+  "cleanUrls": true,
+  "headers": [
+    {
+      // /public/fonts/fontname.woff2
+      "source": "/fonts/fontname.woff2",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ]
+}
+```

@@ -1,0 +1,33 @@
+---
+import { colorLanguageMap, colorMap, languageNameMap } from '#constants/globals'
+
+export interface Props {
+  language: string
+}
+const { language } = Astro.props
+
+const lang = language.toLowerCase()
+const name = languageNameMap[lang]
+const backgroundColor = colorMap[colorLanguageMap[lang]]
+---
+
+<div class='language'>
+  <circle style={`background-color: ${backgroundColor}`}></circle>
+  <span>{name}</span>
+</div>
+
+<style lang='scss'>
+  .language {
+    circle {
+      border-radius: 50%;
+      display: inline-block;
+      height: 10px;
+      margin-right: 5px;
+      width: 10px;
+    }
+    span {
+      color: var(--colorText);
+      font-size: 0.9em;
+    }
+  }
+</style>

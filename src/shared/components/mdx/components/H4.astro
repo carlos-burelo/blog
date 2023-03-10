@@ -1,0 +1,9 @@
+---
+const { id } = Astro.props
+---
+
+<a href={`#${id}`} id={id}>
+  <h4>
+    <slot />
+  </h4>
+</a>

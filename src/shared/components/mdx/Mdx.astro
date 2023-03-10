@@ -1,0 +1,22 @@
+---
+import components from '.'
+
+export type Props = PageProps
+
+const { payload } = Astro.props
+const { Content } = await payload.render()
+---
+
+<article class='article'>
+  <Content components={components} />
+</article>
+
+<style lang='scss'>
+  .article {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    max-width: 75ch;
+    font-size: 1.2em;
+  }
+</style>

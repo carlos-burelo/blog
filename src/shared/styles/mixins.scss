@@ -1,0 +1,70 @@
+@mixin grid($verticalAlign: center, $horizontalAlign: center) {
+  display: grid;
+  align-content: $verticalAlign;
+  justify-content: $horizontalAlign;
+}
+
+@mixin flex($alignY: center, $alignX: center, $gap: var(--separation), $dir: row) {
+  display: flex;
+  align-items: $alignY;
+  justify-content: $alignX;
+  gap: $gap;
+  flex-direction: $dir;
+}
+
+@mixin position($position: absolute, $top: 0, $right: 0, $bottom: 0, $left: 0) {
+  position: $position;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+@mixin textCut ($lines: 2) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+}
+
+@mixin fullContent {
+  width: 100%;
+  height: 100%;
+}
+
+@mixin card {
+  display: grid;
+  gap: var(--separation);
+  padding: var(--separation);
+  border: solid 1px var(--borderColorCard);
+  border-radius: var(--midRadius);
+
+  @include mobile {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: 450px) {
+    @content;
+  }
+}
+
+@mixin fold {
+  @media (min-width: 450px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: 800px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}

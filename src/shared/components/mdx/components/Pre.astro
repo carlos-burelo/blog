@@ -1,0 +1,63 @@
+---
+const props = Astro.props
+---
+
+<pre {...props}>
+  <slot />
+</pre>
+
+<style lang='scss'>
+  pre {
+    background-color: transparent !important;
+    border-radius: var(--midRadius);
+    border: 1px solid var(--borderColorCard);
+    font-size: 0.9em;
+    line-height: 1.8em;
+    overflow-x: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    :global(code) {
+      display: grid;
+      counter-reset: line;
+    }
+    :global(code > span) {
+      padding: 0 1rem;
+      line-height: 1.8;
+      tab-size: 4;
+      border-left: 2px solid transparent;
+      &::before {
+        display: inline-block;
+        width: 1rem;
+        margin-right: 2rem;
+        color: #7f848e;
+        text-align: right;
+        content: counter(line);
+        counter-increment: line;
+      }
+      &.highlighted {
+        background-color: var(--backgroundSelection);
+      }
+    }
+  }
+  :global(div[data-rehype-pretty-code-fragment]) {
+    &:has(div[data-rehype-pretty-code-title]) {
+      pre {
+        border-radius: 0 0 var(--midRadius) var(--midRadius);
+      }
+    }
+  }
+  :global(div[data-rehype-pretty-code-title]) {
+    padding: 0.5em 1em;
+    font-size: 1em;
+    font-weight: 500;
+    color: var(--colorTitle);
+    letter-spacing: 0.7px;
+    border: solid 1px var(--borderColorCard);
+    border-bottom: none;
+    border-radius: var(--midRadius) var(--midRadius) 0 0;
+    &::before {
+      content: '📄';
+    }
+  }
+</style>

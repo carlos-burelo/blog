@@ -1,0 +1,80 @@
+---
+import Section from '#components/elements/Section.astro'
+import AstroJS from '#components/svg/logos/AstroJS.astro'
+import { SKILLS } from '#constants/user'
+---
+
+<Section title='Skills' class='container'>
+  <section class='skills'>
+    <h3 class='title'>With experience in</h3>
+    <div class='icons'>
+      {
+        SKILLS.map(Icon => (
+          <div class='icon'>
+            <Icon />
+          </div>
+        ))
+      }
+    </div>
+  </section>
+  <section class='text'>
+    <h3 class='legend'>
+      I'm currently learning
+      <em class='orange'>Rust🦀</em>
+      to make my projects much
+      <em class='blue'>faster🚀</em>
+    </h3>
+  </section>
+</Section>
+
+<style lang='scss'>
+  .container {
+    align-items: center;
+    gap: 2em;
+  }
+  .legend {
+    font-size: 2em;
+    @include tablet {
+      font-size: 2.8em;
+    }
+  }
+  .blue {
+    color: var(--blue);
+  }
+  .orange {
+    color: var(--orange);
+  }
+  .skills {
+    display: grid;
+    gap: 1em;
+  }
+  .text {
+    text-align: center;
+  }
+  .title {
+    text-align: center;
+    font-size: 2em;
+  }
+  .icons {
+    display: grid;
+    gap: 1em;
+    grid-template-columns: repeat(4, 1fr);
+    @include tablet {
+      justify-self: center;
+    }
+  }
+  .icon {
+    font-size: 40px;
+    color: var(--colorTitle);
+    border-radius: 0.25em;
+    border: solid 1px var(--borderColorCard);
+    aspect-ratio: 1/1;
+    @include flex;
+    @include fullContent;
+    @include fold {
+      aspect-ratio: initial;
+      padding: 20px;
+      width: fit-content;
+    }
+  }
+</style>

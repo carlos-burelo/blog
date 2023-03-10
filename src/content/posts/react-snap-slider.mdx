@@ -1,0 +1,70 @@
+---
+title: "Implement React Slider with Snap Scroll and Pagination"
+category: "example"
+createdAt: 2023-01-27
+---
+
+# Implement React Snap Slider
+
+## Create a custom hook
+
+```ts title="hooks/useSnapSlider.ts"
+import { useEffect, useState, RefObject } from 'react'
+
+const useSlider = (slider: RefObject<HTMLDivElement>, count: number) => {
+  const [currentView, setCurrentView] = useState(0)
+  const [index, setIndex] = useState(0)
+
+  useEffect(() => {
+    if (slider.current !== null) {
+      slider.current.scrollTo({
+        left: currentView,
+        behavior: 'smooth'
+      })
+    }
+  }, [currentView, slider])
+
+  useEffect(() => {
+    if (slider.current !== null) {
+      const width = slider.current.clientWidth
+      const nextView = index * width
+      setCurrentView(nextView)
+    }
+  }, [index, slider])
+
+  return {
+    index,
+    setIndex
+  }
+}
+```
+
+## Create a component
+
+```tsx title="components/SnapSlider.tsx"
+import { useRef } from 'react'
+import { useSlider } from '../hooks/useSnapSlider'
+
+const Slider = () => {
+  const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  const sliderRef = useRef<HTMLDivElement>(null)
+  const { index, setIndex } = useSlider(sliderRef, cards.length)
+
+  return (
+    <>
+      <div className="slider">
+        {cards.map((card, i) => (
+          <div key={i} className="card">
+            {card}
+          </div>
+        ))}
+      </div>
+      {cards.map((card, i)=>(
+        <button key={i} onClick={()=> setIndex(i)}>
+          {i + 1}
+        </button>
+      ))}
+    </>
+  )
+}
+```

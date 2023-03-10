@@ -1,0 +1,24 @@
+---
+title: Obtener propiedades anidadas de un objeto
+lang: javascript
+---
+
+```js
+const obj = {
+  prop1: 'value1',
+  children: {
+    prop2: 'value2',
+  },
+}
+
+const getNestedProp = (node, path) => {
+  const keys = path.split('.')
+  let obj = node
+  for (let i = 0; i < keys.length; i++) {
+    obj = obj[keys[i]]
+    if (obj === undefined) return undefined
+  }
+  return obj
+}
+getNestedProp(obj, 'prop1,children.prop2') // 'value2'
+```

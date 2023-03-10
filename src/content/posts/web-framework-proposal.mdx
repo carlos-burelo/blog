@@ -1,0 +1,163 @@
+---
+title: "Implementation and proposal of a web framework based on web standards"
+category: "development"
+createdAt: 2023-07-20
+---
+
+# Motivación
+
+Durante el tiempo que he estado trabajando con el framework Svelte, he sentido que es el framework por excelencia para la creación de interfaces. Por ello, he decidido implementar algunas propuestas que me han resultado muy interesantes ya que si bien el framework trata de mantenerse lo mas cercano a la plataforma y a los estándares de la web, se han tomado algunas decisiones que me han resultado algo extrañas, es por eso que me puse a pensar en algunas soluciones que pueden ser útiles para la implementación de interfaces.
+
+
+## Propuesta 1: Template 
+
+- [Bucles o iteradores](#bucles-o-iteradores)
+- [Props](#props)
+
+Con esta parte es con la que he tenido más problemas a la hora de implementar interfaces, si bien no es una sintaxis muy complicada, es una parte que me ha resultado muy extraña y que me ha hecho pensar en otras soluciones que probablemente sean más útiles y reduzcan la cantidad de código que se necesita para realizar ciertas funciones.
+
+### Bucles o iteradores 
+
+Comenzamos por la primera propuesta para el template, que es la de iteradores, pero primero veamos como es que actualmente se usa en el framework.
+
+```svelte
+<ul>
+  {#each list as item}
+    <li>{item}</li>
+  {/each}
+</ul>
+```
+
+Como podemos ver en el ejemplo, el bucle es una estructura de control que itera sobre una lista de elementos, es decir, los va recorriendo y los va renderizando en el template, la característica que mas me ha generado ciertas dificultades es su sintaxis, si bien svelte trata de mantenerse lo mas cercano a los estándares , esto ha sido un paso atrás de lo que que esperaba y me ha hecho cuestionar si seria la forma correcta de implementarlo.
+
+En base a esto he considerado que **React** tiene mejor sintaxis para estas estructuras de control ya que utiliza los corchetes para permitir la ejecución de javascript dentro de ellos, lo que en da como beneficio poder usar la sintaxis nativa de javascript para generar un bucle, como en el ejemplo continuación.
+
+```jsx
+<ul>
+  {list.map(item => (
+    <li>{item}</li>
+  ))}
+</ul>
+```
+
+De esta forma se puede entender mucho mas fácil como se estructura el bucle ya que se utilizan directamente los métodos de los arreglos del propio lenguaje, como el `.map(){:js}`, para iterar sobre la lista de elementos.
+
+Si bien esta sintaxis nos podría solucionar esa pequeña inconsistencia en la sintaxis de svelte, aun es muy pronto para que podamos decir que es la forma correcta, a pesar de que svelte si puede interpretar código javascript dentro de los `{}{:js}` como si de _JSX_ se tratara, por eso pasamos a la siguiente propuesta que considero un poco mas acertada para el entorno de svelte.
+
+```html
+<ul>
+  <li *ngFor="let item of list">{item}</li>
+</ul>
+```
+
+Reconociendo a un viejo conocido, algunos tal vez lo odien otros tal vez lo amen y alguno que otro le es indiferente, no hablamos de otro mas que el conocido **Angular**, pero se preguntaran, ¿Porque?.
+La respuesta es algo subjetiva, asi que permitan me explicarlo mejor.
+
+Svelte es un framework que busca generar interfaces web de la forma mas simple posible, reduciendo el _boilerplate_ que se tiene con otros frameworks y utilizar la sintaxis de javascript hasta donde sea posible, pero tiene tiene algunas condiciones en las que se apoya mas del template y las etiquetas html y es aquí donde entra mi propuesta.
+
+```html
+<ul>
+  <li [for]="let item of list">{item}</li>
+</ul>
+```
+
+Basándome en la propuesta de Angular que utiliza el template para generar estructuras de control y en las directivas que permiten realizar estas estructuras, propuse crear una directiva que use los corchetes `[some_directive]{:js}` como sintaxis ideal para las estructuras de control de svelte y que permita reducir el código de esta forma:
+
+```html
+<!-- Iteración simple sobre una lista de numeros -->
+<ul>
+  <li [for]="let number of numbers">Numero #{number}</li>
+</ul>
+
+<!-- Iteración sobre una lista de objetos -->
+<ul>
+  <li [for]="let item of items">{item.name}</li>
+</ul>
+
+<!-- Ó también usando destructuracion -->
+<ul>
+  <li [for]="let { name } of items">{name}</li>
+</ul>
+
+<!-- Obteniendo el indice del elemento... -->
+<ul>
+  <li [for]="let item of items, index">{index}. {item}</li>
+</ul>
+```
+
+Con esta propuesta busco delegar el proceso de renderizando a el propio template conservando la reactividad de las variables de svelte utilizando el atributo `[for]` sobre la etiqueta que se busca iterar manteniendo un comportamiento reactivo similar a como se utiliza el atributo `bind` del propio svelte.
+La sintaxis de la iteración esta basada en la estructura `for (let item of items){...}{:js}` de javascript lo cual lo hace mas sencillo de implementar y mas fácil de entender.
+
+### Condicionales 
+
+De igual forma que con la propuesta de los bucles, svelte también tiene una sintaxis para condicionales, pero esta sintaxis sigue el mismo patrón que la de los bucles, es decir, se utiliza el corchete `[if]` y una pseudo propiedad `else{:js}` para definir una condición, pero en vez de una lista de elementos, se utiliza una expresión de javascript, por lo que se puede utilizar cualquier expresión de javascript, como en el ejemplo siguiente:
+
+```html
+<!-- Condicional simple -->
+<div [if]="isVisible">
+  <p>Esta visible</p>
+</div>
+
+<!-- Condicional con else -->
+<div [if]="isVisible; else loading">
+  <p>Esta visible</p>
+</div>
+
+<!-- 
+  Esta es la sección que se muestra 
+  cuando la condición es falsa.` 
+-->
+<div #loading>
+  <p>Cargando...</p>
+</div>
+```
+
+Esta propuesta busca al igual que la anterior, preservar la reactividad de los componentes haciendo que las evaluación de las variables (al menos las mas simples) se interpreten directamente en el template.
+
+El atributo `[if]` le indica a la etiqueta si esta se debe mostrar o no y en condicionales con un else se define el componente que hace la función de _fallback_ con un identificador que se puede utilizar en el template usando el símbolo `#`.
+
+## Propuesta 2: Props
+
+### Propiedades (indeciso 🤔) 
+
+Otros de los conceptos raros de svelte son las props, que son las propiedades que se le pasan a un componente, y que se utilizan para definir el comportamiento del componente, pero en este framework el concepto se ve invertido, ya que en lugar de definir las variables que estaremos recibiendo en el componente, se definen las variables que son expuestas al componente padre.
+
+```svelte
+<!-- Componente padre -->
+<div>
+  <Counter {value} />
+</div>
+
+
+<!-- Componente hijo -->
+<script>
+  export let value = 0;
+</script>
+
+<p>{value}</p>
+```
+
+Mi propuesta es que las propiedades que se reciban en le componente hijo puedan provenir de una variable global que puede tener cualquier nombre aunque bien puede ser llamada `$props{:js}`.
+De esta manera se puede entender el concepto de que las props son algo que se recibe y no algo que se expone a los componentes padre.
+
+```svelte title="parent.svelte"
+<!-- Componente padre -->
+<div>
+  <Counter {value} />
+</div>
+```
+
+```svelte title="child.svelte" {3}
+<!-- Componente hijo -->
+<script>
+  let { value } = $props;
+</script>
+
+<p>{value}</p>
+```
+
+Utilizando esta nomenclatura se puede entender de forma mas sencilla que nos referimos a una variable que es reactiva por defecto, y que se actualiza cuando se le pasa una nueva propiedad o pueda ocurrir algún cambio en el componente padre que desencadene un cambio en la variable.
+
+La idea de utilizar `$props{:js}` como un alternativa a los `export{:js}` de variables es que sea más fácil de entender y que sea más fácil de mantener. Por ejemplo, las variables que definen el comportamiento del componente son las props, pero estas son fácilmente confundibles con las variables del propio componente, por lo que hacer una _destructuración_ de las props es más fácil de entender, ademas de que implementar una variable "global" dentro de un componente no es tan complicado considerando que la sintaxis de svelte ya hace cosas similares con las variables reactivas usando el símbolo `${:js}`.
+
+### Continuara... 

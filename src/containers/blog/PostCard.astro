@@ -1,0 +1,93 @@
+---
+import Avatar from '#components/elements/Avatar.astro'
+import Time from '#components/elements/Time.astro'
+import type { CollectionEntry } from 'astro:content'
+
+export type Props = CollectionEntry<'posts'>
+
+const { slug, data } = Astro.props
+---
+
+<div class='card'>
+  <header class='author'>
+    <Avatar />
+    <div class='info'>
+      <h3 class='name'>Carlos Burelo</h3>
+      <Time date={data.createdAt} class='date' />
+    </div>
+  </header>
+  <a href={`/blog/${slug}`}>
+    <h2 class='title'>{data.title}</h2>
+  </a>
+
+  <a href='/category' class='category'>{data.category}</a>
+</div>
+
+<style lang='scss'>
+  .card {
+    scroll-snap-align: start;
+    min-height: 250px;
+    align-content: space-between;
+    @include card;
+    @include tablet {
+      grid-template-areas:
+        'title title'
+        'author category';
+      justify-content: space-between;
+      min-height: 200px;
+    }
+  }
+  .author {
+    display: flex;
+    gap: var(--separation-card);
+    align-items: center;
+
+    @include tablet {
+      grid-area: author;
+    }
+  }
+  .info {
+    @include tablet {
+      display: flex;
+      gap: var(--separation);
+      align-items: center;
+    }
+  }
+  .name {
+    font-size: 1em;
+  }
+  .title {
+    font-size: 1.5em;
+    line-height: 1.5em;
+    @include textCut;
+
+    @include tablet {
+      grid-area: title;
+      font-size: 1.8em;
+    }
+
+    &:hover {
+      color: var(--foreground-title);
+    }
+  }
+  .category {
+    width: fit-content;
+    height: fit-content;
+    padding: 0.3em 0.75em;
+    color: var(--colorTitle);
+    border: solid 1px var(--borderColorCard);
+    border-radius: var(--minRadius);
+
+    &:hover {
+      background-color: var(--backgroundButtonHover);
+    }
+
+    @include tablet {
+      grid-area: category;
+    }
+  }
+  .date {
+    font-size: 0.75em;
+    color: var(--colorText);
+  }
+</style>

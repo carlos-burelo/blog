@@ -1,0 +1,30 @@
+---
+// import { ORG_API_URL, USER_API_URL } from '#constants/url'
+import Repository from './Repository.astro'
+import { repos } from '#constants/mocks'
+
+// const [userResponse, orgResponse] = await Promise.all([
+//   fetch(USER_API_URL),
+//   fetch(ORG_API_URL),
+// ])
+
+// const [userData, reposData] = await Promise.all([
+//   userResponse.json(),
+//   orgResponse.json(),
+// ])
+
+// const repos = [...userData, ...reposData]
+
+// const repos =
+---
+
+<aside class='aside'>
+  {repos.slice(0, 5).map(repo => <Repository {...repo} />)}
+</aside>
+
+<style lang='scss'>
+  .aside {
+    display: grid;
+    gap: 1rem;
+  }
+</style>

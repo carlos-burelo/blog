@@ -1,0 +1,184 @@
+---
+import { type Color, colorMap } from '#constants/globals'
+
+export type Props = {
+  text: string
+  href?: string
+  color?: Color
+}
+
+const { color, text, href, ...props } = Astro.props
+
+const styles = `
+  --backgroundButton: ${colorMap[color as Color]}1A;
+  --borderColorButton: ${colorMap[color as Color]}3B;
+  --colorButton: ${colorMap[color as Color]};
+  --backgroundButtonHover: ${colorMap[color as Color]}1A;
+  --colorButtonHover: ${colorMap[color as Color]};
+  --borderColorButtonHover: ${colorMap[color as Color]};
+`.replace(/\s|\r/g, '')
+---
+
+{
+  href ? (
+    <a class='btn' style={color && styles} href={href} {...props}>
+      {text}
+    </a>
+  ) : (
+    <button class='btn' style={color && styles} {...props}>
+      {text}
+    </button>
+  )
+}
+
+<style lang='scss'>
+  .btn {
+    all: unset;
+    display: inline;
+    cursor: pointer;
+    width: fit-content;
+    height: fit-content;
+    padding: 0.6rem 1rem;
+    border-radius: 0.5rem;
+    background-color: var(--backgroundButton);
+    color: var(--colorButton);
+    border: 1px solid var(--borderColorButton);
+    transition-property: background-color, color, border;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+    &:hover {
+      background-color: var(--backgroundButtonHover);
+      color: var(--colorButtonHover);
+      border: 1px solid var(--borderColorButtonHover);
+    }
+  }
+
+  // .orange {
+  //   --backgroundButton: var(--backdrop-orange);
+  //   --colorButton: var(--orange);
+  //   --borderColorButton: var(--border-orange);
+  //   --backgroundButtonHover: var(--backdrop-orange);
+  //   --colorButtonHover: var(--orange);
+  //   --borderColorButtonHover: var(--orange);
+  // }
+  // .amber {
+  //   --backgroundButton: var(--backdrop-amber);
+  //   --colorButton: var(--amber);
+  //   --borderColorButton: var(--border-amber);
+  //   --backgroundButtonHover: var(--backdrop-amber);
+  //   --colorButtonHover: var(--amber);
+  //   --borderColorButtonHover: var(--amber);
+  // }
+  // .yellow {
+  //   --backgroundButton: var(--backdrop-yellow);
+  //   --colorButton: var(--yellow);
+  //   --borderColorButton: var(--border-yellow);
+  //   --backgroundButtonHover: var(--backdrop-yellow);
+  //   --colorButtonHover: var(--yellow);
+  //   --borderColorButtonHover: var(--yellow);
+  // }
+  // .lime {
+  //   --backgroundButton: var(--backdrop-lime);
+  //   --colorButton: var(--lime);
+  //   --borderColorButton: var(--border-lime);
+  //   --backgroundButtonHover: var(--backdrop-lime);
+  //   --colorButtonHover: var(--lime);
+  //   --borderColorButtonHover: var(--lime);
+  // }
+  // .green {
+  //   --backgroundButton: var(--backdrop-green);
+  //   --colorButton: var(--green);
+  //   --borderColorButton: var(--border-green);
+  //   --backgroundButtonHover: var(--backdrop-green);
+  //   --colorButtonHover: var(--green);
+  //   --borderColorButtonHover: var(--green);
+  // }
+  // .emerald {
+  //   --backgroundButton: var(--backdrop-emerald);
+  //   --colorButton: var(--emerald);
+  //   --borderColorButton: var(--border-emerald);
+  //   --backgroundButtonHover: var(--backdrop-emerald);
+  //   --colorButtonHover: var(--emerald);
+  //   --borderColorButtonHover: var(--emerald);
+  // }
+  // .teal {
+  //   --backgroundButton: var(--backdrop-teal);
+  //   --colorButton: var(--teal);
+  //   --borderColorButton: var(--border-teal);
+  //   --backgroundButtonHover: var(--backdrop-teal);
+  //   --colorButtonHover: var(--teal);
+  //   --borderColorButtonHover: var(--teal);
+  // }
+  // .cyan {
+  //   --backgroundButton: var(--backdrop-cyan);
+  //   --colorButton: var(--cyan);
+  //   --borderColorButton: var(--border-cyan);
+  //   --backgroundButtonHover: var(--backdrop-cyan);
+  //   --colorButtonHover: var(--cyan);
+  //   --borderColorButtonHover: var(--cyan);
+  // }
+  // .sky {
+  //   --backgroundButton: var(--backdrop-sky);
+  //   --colorButton: var(--sky);
+  //   --borderColorButton: var(--border-sky);
+  //   --backgroundButtonHover: var(--backdrop-sky);
+  //   --colorButtonHover: var(--sky);
+  //   --borderColorButtonHover: var(--sky);
+  // }
+  // .blue {
+  //   --backgroundButton: var(--backdrop-blue);
+  //   --colorButton: var(--blue);
+  //   --borderColorButton: var(--border-blue);
+  //   --backgroundButtonHover: var(--backdrop-blue);
+  //   --colorButtonHover: var(--blue);
+  //   --borderColorButtonHover: var(--blue);
+  // }
+  // .indigo {
+  //   --backgroundButton: var(--backdrop-indigo);
+  //   --colorButton: var(--indigo);
+  //   --borderColorButton: var(--border-indigo);
+  //   --backgroundButtonHover: var(--backdrop-indigo);
+  //   --colorButtonHover: var(--indigo);
+  //   --borderColorButtonHover: var(--indigo);
+  // }
+  // .violet {
+  //   --backgroundButton: var(--backdrop-violet);
+  //   --colorButton: var(--violet);
+  //   --borderColorButton: var(--border-violet);
+  //   --backgroundButtonHover: var(--backdrop-violet);
+  //   --colorButtonHover: var(--violet);
+  //   --borderColorButtonHover: var(--violet);
+  // }
+  // .purple {
+  //   --backgroundButton: var(--backdrop-purple);
+  //   --colorButton: var(--purple);
+  //   --borderColorButton: var(--border-purple);
+  //   --backgroundButtonHover: var(--backdrop-purple);
+  //   --colorButtonHover: var(--purple);
+  //   --borderColorButtonHover: var(--purple);
+  // }
+  // .fuchsia {
+  //   --backgroundButton: var(--backdrop-fuchsia);
+  //   --colorButton: var(--fuchsia);
+  //   --borderColorButton: var(--border-fuchsia);
+  //   --backgroundButtonHover: var(--backdrop-fuchsia);
+  //   --colorButtonHover: var(--fuchsia);
+  //   --borderColorButtonHover: var(--fuchsia);
+  // }
+  // .pink {
+  //   --backgroundButton: var(--backdrop-pink);
+  //   --colorButton: var(--pink);
+  //   --borderColorButton: var(--border-pink);
+  //   --backgroundButtonHover: var(--backdrop-pink);
+  //   --colorButtonHover: var(--pink);
+  //   --borderColorButtonHover: var(--pink);
+  // }
+  // .rose {
+  //   --backgroundButton: var(--backdrop-rose);
+  //   --colorButton: var(--rose);
+  //   --borderColorButton: var(--border-rose);
+  //   --backgroundButtonHover: var(--backdrop-rose);
+  //   --colorButtonHover: var(--rose);
+  //   --borderColorButtonHover: var(--rose);
+  // }
+</style>

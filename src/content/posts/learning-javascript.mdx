@@ -1,0 +1,189 @@
+---
+title: "Learning some common javascript concepts step by step"
+category: "explain"
+createdAt: 2022-04-21
+---
+
+# Introducción
+
+Personalmente creo que es de vital importancia entender algunos conceptos clave de javascript, como por ejemplo, el scope, la mutación, las funciones y los objetos, etc.
+ya que estos nos proveen de diversas características y funciones que nos permiten trabajar con el lenguaje de forma mas sencilla y eficiente, por eso me he dado a la tarea de agrupar algunas de estas características de javascript que lo hacen el lenguaje popular que es hoy, y tratare de simplificar lo mas posible el tema para que pueda ser entendido por los demás 😀.
+
+# Características del lenguaje
+
+Como cualquier otro lenguaje de programación, javascript esta dotado de diversas características y peculiaridades que son las que definen con que facilidad podremos trabajar al momento de crear nuestras aplicaciones, siendo uno de los lenguajes mas populares actualmente veamos que nos puede ofrecer.
+
+## Scope 🟦
+
+El **scope** en palabras sencillas lo podemos entender como un _ambiente_ o _entorno_ en el que se encuentra una variable, una función, una clase, etc.
+
+Dentro de este entorno cualquier declaración de variable o función que se haga sera accesible solo dentro del mismo.
+
+```js
+const name = 'John'
+const age = 23
+const country = 'US'
+// Todas las declaraciones anteriores se encuentran dentro del
+// scope "global" por lo que podemos acceder a ellas desde cualquier lugar.
+
+function getAge() {
+    return age // 23
+  }
+
+if (age > 18) {
+  const isOlder = true
+  // La constante "isOlder" solo esta disponible dentro del scope "if"
+  // por lo que no podemos acceder a ella desde fuera del scope, por ejemplo.
+}
+
+console.log(isOlder) // undefined
+  ```
+
+## Mutación ☢️
+
+La **mutación** es otro concepto que nos ayuda a entender el ciclo de vida de las variables en javascript, es decir, cuando una variable es mutada, esta puede cambiar de valor y esto puede causar un comportamiento inesperado si no sabemos en que punto de nuestra aplicación hemos mutado su valor, por ejemplo:
+
+```js
+const fruits = ['apple', 'banana', 'orange']
+const orange = fruits.pop() // ["orange"]
+console.log(fruits) // ["apple", "banana"]
+  ```
+
+Como podemos ver, al utilizar el método `.pop(){:js}` estamos obteniendo el ultimo valor de el arreglo `fruits{:js}`, pero a su vez este mismo ha perdido su ultimo valor, por lo que al momento de imprimir el valor de `fruits{:js}`, el elemento `"orange"{:.str}` ya no esta disponible.
+
+En javascript tenemos métodos que mutan el valor de una variable, en este caso tomaremos de ejemplo los arreglos, como por ejemplo:
+
+- `.push(){:js}`: Agrega un elemento al final del arreglo
+- `.pop(){:js}`: Elimina el ultimo elemento del arreglo
+- `.shift(){:js}`: Elimina el primer elemento del arreglo
+- `.unshift(){:js}`: Agrega un elemento al inicio del arreglo
+
+Métodos que mutan el valor de un string...
+
+- `.concat(){:js}`: Concatena un string con otro string
+- `.slice(){:js}`: Extrae una porción del string
+- `.split(){:js}`: Divide un string en un arreglo
+- `.substr(){:js}`: Extrae una porción del string
+- `.substring(){:js}`: Extrae una porción del string
+- `.toLowerCase(){:js}`: Convierte el string a minúsculas
+- `.toUpperCase(){:js}`: Convierte el string a mayúsculas
+
+Métodos que mutan el valor de un numero...
+
+- `.toString(){:js}`: Convierte el numero en un string
+- `.toFixed(){:js}`: Convierte el numero en un string con una cantidad de decimales
+- `.toExponential(){:js}`: Convierte el numero en un string con una cantidad de decimales
+- `.toPrecision(){:js}`: Convierte el numero en un string con una cantidad de decimales
+
+Y métodos que mutan el valor de un objeto.
+
+- `.assign(){:js}`: Asigna un valor a una propiedad de un objeto
+- `.deleteProperty(){:js}`: Elimina una propiedad de un objeto
+- `.defineProperty(){:js}`: Define una propiedad de un objeto
+- `.freeze(){:js}`: Congela un objeto
+- `.seal(){:js}`: Se cierra un objeto
+- `.preventExtensions(){:js}`: Evita que un objeto sea extensible
+- `.isFrozen(){:js}`: Verifica si un objeto esta congelado
+- `.isSealed(){:js}`: Verifica si un objeto esta cerrado
+- `.isExtensible(){:js}`: Verifica si un objeto es extensible
+
+## Funciones 🐛➡🦋
+
+Una función la podemos entender como una serie de instrucciones agrupadas que puede ser invocada desde casi cualquier lugar, con la finalidad de separar en módulos el código y poder reutilizarlo en diferentes partes de nuestra aplicación, la cual cuenta con una serie de características que nos permiten realizar estas tareas.
+
+Si tenemos un bloque de código que realiza alguna operación, podemos crear una función que lo haga, y luego invocarla desde cualquier lugar sin tener que repetir el mismo código, por ejemplo:
+
+```javascript title = "funciones.js"
+function sumNumbers (num1, num2) {
+  return num1 + num2
+}
+sumNumbers(1, 2) // Retorna 3
+  ```
+
+Aquí tenemos el ejemplo mas común de como crear una función en javascript, y como invocarla, pero debemos tener ciertos factores en cuenta a la hora de crear una función, por ejemplo:
+
+### `Nombre de la función`
+
+El nombre debe ser claro, corto y consistente usando la nomenclatura **_camelCase_** en ingles, ademas de representar el propósito de la función sin agregados extras.
+Comúnmente de utilizan ciertos prefijos como `get` y `set` para indicar que la función es un _getter_ o _setter_ y sufijos como _Handler_ para indicar que la función es un gestor de eventos.
+
+Por ejemplo:
+
+- `sumNumbers{:.fn}`: Suma dos números
+- `getAge{:.fn}`: Retorna la edad de una persona
+- `setAge{:.fn}`: Cambia la edad de una persona
+- `onClickHandler{:.fn}`: Maneja el evento click
+
+### `Parámetros`
+
+Cuando creamos una función, podemos definir una serie de parámetros que modificaran el comportamiento de la función en base al valor de estos.
+
+Al igual que con las funciones, los parámetros deben ser consistes para identificar el valor que representa y su uso en el código, pero a diferencia de el nombre en las funciones, estos solo deben especificar el uso en su nombre sin agregados innecesarios.
+
+## Callbacks ◀️
+
+Los **callbacks** son otras de esas funcionalidades que vale la pena conocer, si bien su uso se ha reducido significativamente en los últimos años, este sigue presente en en lenguaje aunque de forma más sutil en los métodos de un arreglo o en `polyfills{:.const}`.
+
+De una manera muy sencilla, un callback no es más que una función que se ejecutará dentro de otra función una vez que la primera se termine de ejecutar, es decir, a una función le estaremos pasando otra una vez que la primera terminé.
+
+```js
+const numbers = [1, 2, 3, 4]
+
+const doubles = numbers.map(number => number * 2)
+  // el callback es la función que recibe el map()
+  // en este caso es una función de tipo flecha
+  ```
+
+Por ejemplo, la función `map(){:js}` es un método del `Array.prototype{:js}`, es decir, un método disponible en todos los arreglos, este recibe un una función que le indique que hacer una vez que la función `.map(){:js}` ha terminado de ejecutarse y está recibe un argumento que luego usa para hacer las transformaciones correspondientes.
+
+## Promesas 🤝
+
+Las Promesas las podemos considerar una evolución natural de los Callbacks, ya que un uso común de los Callbacks se encuentran enfocados a operaciones _asíncronas_ ya que su sintaxis es más comprensible que la de los callbacks, por ejemplo:
+
+```js
+const res = fetch('https://url/api')
+  .then(res => res.json())
+  .catch(res => console.error(res))
+  .finally(() => console.log('Promise completely'))
+  ```
+
+Una promesa cuenta con 3 partes, el `.then(){:js}`, `.catch(){:js}`, y `.finally(){:js}` que son métodos que caracterizan a una promesa aunque por el momento solo hablaremos de then y catch que son los más comunes.
+
+### `.then(){:js}`
+
+Posiblemente este es el método principal por el cual se distinguen la promesas ya que es el que se encargará de devolver o transformar un valor dependiendo de la implementación.
+
+Mas fácilmente podemos entender a `then(){:js}` como el método que hace algo una vez que la promesa ha terminado, y dentro de then() escribimos un callback que es el que se encargará de recibir la respuesta que la promesa haya devuelto.
+
+### `.catch(){:js}`
+
+Catch podemos considerarlo como un método auxiliar, es decir, una contra-medida en caso de que la promesa no se resuelva correctamente y está retorne un error, como por ejemplo, Si una petición a una API devuelve un código de estado en el rango de 400 a 500, esto se consideraría como una promesa no resuelta, por lo que el método _.then()_ quedaría anulado y se saltaría directamente al método `catch(){:js}` y este recibiría un callback para manejar el error, por ejemplo:
+
+```js
+fetch('https://invalid.url')
+  .then(/*Esto ya no se ejecutara*/)
+  .catch(error => console.log(error))
+  // muestra el error en consola
+  ```
+
+## Async/Await 🕒
+
+Y finalmente **async /await** es una forma de escribir una función que sea asíncrona con una sintaxis mas clara y limpia que las promesas en donde ahora contaremos con 2 palabras reservadas para realizar esto, que como pueden imaginar, son `async{:js}` y `await{:js}`.
+
+**Async** es la manera con la cual definimos que la que la función devolverá una promesa, si, una promesa. Aunque la función utiliza las palabra `async{:ts}`, esta es solo un indicador del tipo de función, en este caso, una función asíncrona, pero el tipo de dato que retorna es una promesa (_Promise_).
+
+**Await** es la instrucción que indica que la función esperara a que la promesa se resuelva, antes de continuar con las siguientes instrucciones.
+
+```js
+async function getData () {
+  const res = await fetch('https://url/api')
+  const data = await res.json()
+  return data
+}
+```
+
+Tanto `fetch(){:js}` como su método `.json(){:js}` son funciones asíncronas, es decir, que toman un determinado tiempo antes de devolver un valor, por lo que definimos la palabra **await** para indicarle que nos esperaremos a que la promesa nos devuelva el valor que esperamos para poder continuar con las operaciones, en este caso como ambas funciones son asíncronas, definimos 2 veces las palabras await para tener una continuidad correcta en el procesamiento de los datos.
+
+### Notas finales
+
+Quisiera hacer mención que algunas de las cosas que mencioné como algunas reglas de escritura de código, son opiniones personales y no deberían tomarse como norma absoluta para el lenguaje, pero si debo mencionar que muchas de estas reglas se usan actualmente ya que permite una mejor colaboración en las aplicaciones que realices.

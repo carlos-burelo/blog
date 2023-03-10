@@ -1,0 +1,48 @@
+---
+import Button from '#components/elements/Button.astro'
+import Section from '#components/elements/Section.astro'
+import Gallery from './Gallery.astro'
+---
+
+<Section title='About me' class='section'>
+  <Gallery />
+  <section class='info'>
+    <h3 class='title'>Who am I?</h3>
+    <p class='bio'>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure quos eos
+      autem assumenda eveniet voluptate accusantium reprehenderit, in vero, aut
+      sed veniam voluptatibus consectetur necessitatibus accusamus voluptatum
+      sapiente doloribus mollitia facere laboriosam quas ut aliquid nesciunt.
+      Dolorum debitis consectetur maxime.
+    </p>
+    <div class='buttons'>
+      <Button href='/works' text='See my works' />
+      <Button color='blue' href='/contact' text='Contact me' />
+    </div>
+  </section>
+</Section>
+
+<style lang='scss'>
+  .section {
+    gap: 2em;
+    @include tablet {
+      grid-template-columns: 1fr 2fr;
+    }
+  }
+  .info {
+    display: grid;
+    align-content: flex-start;
+    gap: 1em;
+  }
+  .bio {
+    font-size: 1.2rem;
+  }
+  .title {
+    font-size: 2rem;
+    font-weight: 600;
+  }
+  .buttons {
+    display: flex;
+    gap: 1em;
+  }
+</style>

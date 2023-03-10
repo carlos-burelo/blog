@@ -1,0 +1,29 @@
+---
+export interface Props {
+  to: string
+  text: string
+}
+
+const { text, to } = Astro.props
+
+const { pathname } = new URL(Astro.request.url)
+
+const active = pathname === to ? 'active' : ''
+---
+
+<a class:list={['navlink', active]} href={to}>
+  {text}
+</a>
+
+<style lang='scss'>
+  .navlink {
+    color: var(--colorText);
+    &:hover {
+      color: var(--colorTitle);
+    }
+  }
+
+  .active {
+    color: var(--colorTitle);
+  }
+</style>

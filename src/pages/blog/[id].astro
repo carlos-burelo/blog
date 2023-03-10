@@ -1,0 +1,23 @@
+---
+import Layout from '#layout'
+import type { GetStaticPaths } from 'astro'
+import { getCollection, type CollectionEntry } from 'astro:content'
+import Mdx from '#components/mdx/Mdx.astro'
+import PostArticle from '#containers/blog/PostArticle.astro'
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const posts = await getCollection('posts')
+  return posts.map(post => ({
+    params: { id: post.slug },
+    props: { post: post },
+  }))
+}
+
+export type Props = { post: CollectionEntry<'posts'> }
+
+const { post } = Astro.props
+---
+
+<Layout>
+  <PostArticle payload={post} />
+</Layout>
