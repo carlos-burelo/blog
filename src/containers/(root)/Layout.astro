@@ -7,10 +7,34 @@ import '#styles/globals.scss'
 <html lang='en'>
   <head>
     <meta charset='utf-8' />
-    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+    <!-- <link rel='icon' type='image/svg+xml' href='/favicon.svg' /> -->
+    <!-- .webp image for favicon -->
+    <link rel='icon' type='image/webp' href='/avatar.webp' />
     <meta name='viewport' content='width=device-width' />
     <meta name='generator' content={Astro.generator} />
-    <title>Astro</title>
+
+    <meta
+      name='description'
+      content='Blog and developer porfolio build with Astro'
+    />
+    <meta
+      name='keywords'
+      content='Carlos Burelo, Developer, Frontend, Backend'
+    />
+    <meta
+      property='og:title'
+      content='Carlos Burelo - Web Developer and Software engineer'
+    />
+    <meta
+      property='og:description'
+      content='Blog and developer porfolio build with Astro'
+    />
+    <meta
+      property='og:image'
+      content='https://carlosburelo.vercel.app/avatar.webp'
+    />
+    <meta property='og:url' content='https://carlosburelo.vercel.app' />
+    <title>Carlos Burelo - Web Developer and Software engineer</title>
   </head>
   <body>
     <Navbar />
