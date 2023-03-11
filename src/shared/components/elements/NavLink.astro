@@ -11,7 +11,11 @@ const { pathname } = new URL(Astro.request.url)
 const active = pathname === to ? 'active' : ''
 ---
 
-<a class:list={['navlink', active]} href={to}>
+<a
+  rel='noopener noreferrer prefetch'
+  class:list={['navlink', active]}
+  href={to}
+>
   {text}
 </a>
 

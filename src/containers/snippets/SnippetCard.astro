@@ -1,21 +1,23 @@
 ---
 import { colorLanguageMap } from '#constants/globals'
 import type { CollectionEntry } from 'astro:content'
-import Logos from '#components/svg/logos'
+import * as Logos from '#components/svg/logos'
 
 export type Props = CollectionEntry<'snippets'>
 
-const { data, slug } = Astro.props
-const { title, lang } = data
+const {
+  data: { title, lang },
+  slug,
+} = Astro.props
 
 const base = colorLanguageMap[lang.toLowerCase()]
 const backgroundColor = `var(--backdrop-${base})`
 const color = `var(--${base})`
-const Icon = Logos[lang]
+const Icon = (Logos as any)[lang]
 ---
 
 <div class='card'>
-  <a href={`/snippets/${slug}`}>
+  <a rel='noopener noreferrer prefetch' href={`/snippets/${slug}`}>
     <h3 class='title'>{title}</h3>
   </a>
   <span class='lang' style={{ backgroundColor, color }}>

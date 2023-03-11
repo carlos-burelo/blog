@@ -1,0 +1,20 @@
+---
+title: Declaraciones globales de React
+lang: TypeScript
+---
+
+Extiende la funcionalidad de los tipos de React de forma global y omite la necesidad de importar `React` en cada archivo.
+
+```ts title="declarations.d.ts"
+import { ReactElement } from 'react'
+
+export declare global {
+  type Props<P = {}>  = P & {
+    children?: ReactElement<any, any> | ReactElement<any, any>[]
+  }
+  type FC<P = {}> = {
+    displayName?: string
+    (props: Props<P>, context?: any): ReactElement<any, any> | null
+  }
+}
+```

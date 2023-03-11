@@ -1,0 +1,49 @@
+---
+title: Libreria de Input/Output en Java
+lang: Java
+---
+
+Implementacion de una libreria simple de Input/Output en Java basada en la terminal y la sintaxis de Python, para facilitar la lectura de datos de entrada y la impresion de datos de salida.
+
+```java title="IO.java"
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class IO {
+    private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+    public static String input(String prompt) {
+        System.out.print(prompt);
+        try {
+            return reader.readLine();
+        } catch (IOException e) {
+            return "";
+        }
+    }
+
+    public static void print(Object obj) {
+        System.out.print(obj);
+    }
+
+    public static void println(Object obj) {
+        System.out.println(obj);
+    }
+}
+```
+
+```java title="Main.java"
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        String name = IO.input("Enter your name: ");
+        IO.println("Hello, " + name + "!");
+    }
+}
+```
+
+```txt title="Output"
+Enter your name: John
+Hello, John!
+```

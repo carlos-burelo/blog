@@ -21,7 +21,7 @@ const styles = `
 
 {
   href ? (
-    <a class='btn' style={color && styles} href={href} {...props}>
+    <a rel='noopener noreferrer prefetch' class='btn' style={color && styles} href={href} {...props}>
       {text}
     </a>
   ) : (

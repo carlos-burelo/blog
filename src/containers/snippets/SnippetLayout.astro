@@ -11,9 +11,11 @@ const { payload } = Astro.props
   <Mdx payload={payload} />
 </section>
 
-<style>
+<style lang='scss'>
   section {
-    display: grid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     gap: 1rem;
   }
 </style>

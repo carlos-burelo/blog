@@ -1,4 +1,5 @@
 ---
+import Seo from '#components/elements/Seo.astro'
 import Footer from '#components/layout/Footer.astro'
 import Navbar from '#components/layout/Navbar.astro'
 import '#styles/globals.scss'
@@ -6,13 +7,12 @@ import '#styles/globals.scss'
 
 <html lang='en'>
   <head>
-    <meta charset='utf-8' />
-    <!-- <link rel='icon' type='image/svg+xml' href='/favicon.svg' /> -->
-    <!-- .webp image for favicon -->
+    <Seo />
+    <!-- <meta charset='utf-8' />
     <link rel='icon' type='image/webp' href='/avatar.webp' />
     <meta name='viewport' content='width=device-width' />
     <meta name='generator' content={Astro.generator} />
-
+    <link rel="sitemap" href="/sitemap-index.xml">
     <meta
       name='description'
       content='Blog and developer porfolio build with Astro'
@@ -34,7 +34,7 @@ import '#styles/globals.scss'
       content='https://carlosburelo.vercel.app/avatar.webp'
     />
     <meta property='og:url' content='https://carlosburelo.vercel.app' />
-    <title>Carlos Burelo - Web Developer and Software engineer</title>
+    <title>Carlos Burelo - Web Developer and Software engineer</title> -->
   </head>
   <body>
     <Navbar />
@@ -42,11 +42,9 @@ import '#styles/globals.scss'
       <slot />
     </div>
     <Footer />
-  </body>
+  </body><style>
+    div {
+      padding-inline: var(--paddingLayout);
+    }
+  </style>
 </html>
-
-<style>
-  div {
-    padding-inline: var(--paddingLayout);
-  }
-</style>

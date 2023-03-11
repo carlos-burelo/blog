@@ -1,87 +1,33 @@
-import Angular from './Angular.astro'
-import AstroJS from './AstroJS.astro'
-import CPP from './CPP.astro'
-import CSS from './CSS.astro'
-import Deno from './Deno.astro'
-import GO from './GO.astro'
-import GraphQL from './GraphQL.astro'
-import HTML from './HTML.astro'
-import Java from './Java.astro'
-import JavaScript from './JS.astro'
-import JSON from './JSON.astro'
-import JSX from './JSX.astro'
-import Markdown from './Markdown.astro'
-import MongoDB from './MongoDB.astro'
-import NestJS from './NestJS.astro'
-import NextJS from './NextJS.astro'
-import NodeJS from './NodeJS.astro'
-import PostgreSQL from './PostgreSQL.astro'
-import Python from './Python.astro'
-import React from './React.astro'
-import Rust from './Rust.astro'
-import SASS from './SASS.astro'
-import Svelte from './Svelte.astro'
-import TSX from './TSX.astro'
-import TypeScript from './TypeScript.astro'
-
-const logos: Record<string, Function> = {
-  Angular,
-  astro: AstroJS,
-  AstroJS,
-  angular: Angular,
-  CPP,
-  cpp: CPP,
-  CSS,
-  css: CSS,
-  Deno,
-  deno: Deno,
-  GO,
-  go: GO,
-  GraphQL,
-  graphql: GraphQL,
-  gql: GraphQL,
-  HTML,
-  html: HTML,
-  Java,
-  java: Java,
-  JavaScript,
-  javascript: JavaScript,
-  js: JavaScript,
-  JSON,
-  json: JSON,
-  JSX,
-  jsx: JSX,
-  Markdown,
-  markdown: Markdown,
-  md: Markdown,
-  MongoDB,
-  mongodb: MongoDB,
-  NestJS,
-  nestjs: NestJS,
-  NextJS,
-  nextjs: NextJS,
-  NodeJS,
-  nodejs: NodeJS,
-  PostgreSQL,
-  postgresql: PostgreSQL,
-  Python,
-  python: Python,
-  py: Python,
-  React,
-  react: React,
-  Rust,
-  rust: Rust,
-  rs: Rust,
-  SASS,
-  sass: SASS,
-  scss: SASS,
-  Svelte,
-  svelte: Svelte,
-  TSX,
-  tsx: TSX,
-  TypeScript,
-  typescript: TypeScript,
-  ts: TypeScript,
-} as const
-
-export default logos
+export { default as Angular } from './Angular.astro'
+export { default as AstroJS } from './AstroJS.astro'
+export { default as CPP } from './CPP.astro'
+export { default as CSS } from './CSS.astro'
+export { default as Deno } from './Deno.astro'
+export { default as GO } from './GO.astro'
+export { default as GraphQL } from './GraphQL.astro'
+export { default as GQL } from './GraphQL.astro'
+export { default as HTML } from './HTML.astro'
+export { default as Java } from './Java.astro'
+export { default as JavaScript } from './JS.astro'
+export { default as JS } from './JS.astro'
+export { default as JSON } from './JSON.astro'
+export { default as JSX } from './JSX.astro'
+export { default as Markdown } from './Markdown.astro'
+export { default as MD } from './Markdown.astro'
+export { default as MongoDB } from './MongoDB.astro'
+export { default as NestJS } from './NestJS.astro'
+export { default as NextJS } from './NextJS.astro'
+export { default as NodeJS } from './NodeJS.astro'
+export { default as PostgreSQL } from './PostgreSQL.astro'
+export { default as Python } from './Python.astro'
+export { default as Py } from './Python.astro'
+export { default as React } from './React.astro'
+export { default as Rust } from './Rust.astro'
+export { default as RS } from './Rust.astro'
+export { default as SASS } from './SASS.astro'
+export { default as SCSS } from './SASS.astro'
+export { default as SQLite } from './SQLite.astro'
+export { default as Svelte } from './Svelte.astro'
+export { default as TSX } from './TSX.astro'
+export { default as TypeScript } from './TypeScript.astro'
+export { default as TS } from './TypeScript.astro'

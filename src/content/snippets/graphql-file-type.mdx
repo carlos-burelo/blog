@@ -1,0 +1,25 @@
+---
+title: Tipo de archivo para GraphQL
+lang: "GraphQL"
+---
+
+Definición de un tipo de archivo para GraphQL.
+
+```graphql title="schema.graphql"
+type File {
+  filename: String!
+  mimetype: String!
+  encoding: String!
+}
+```
+
+```graphql title="schema.graphql"
+type Query {
+  uploads: [File]
+}
+
+type Mutation {
+  singleUpload(file: Upload!): File!
+  multipleUpload(files: [Upload!]!): [File!]!
+}
+```

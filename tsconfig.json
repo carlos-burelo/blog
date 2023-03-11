@@ -8,6 +8,7 @@
       "#containers/*": [ "./containers/*" ],
       "#content/*": [ "./content/*" ],
       "#islands/*": [ "./islands/*" ],
+      "#services/*": [ "./services/*" ],
       "#adapters": [ "./shared/adapters/*" ],
       "#components/*": [ "./shared/components/*" ],
       "#constants/*": [ "./shared/constants/*" ],

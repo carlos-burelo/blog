@@ -1,8 +1,8 @@
 ---
+import BlogLayout from '#containers/blog/Layout.astro'
 import Layout from '#layout'
 import type { GetStaticPaths } from 'astro'
 import { getCollection } from 'astro:content'
-import BlogLayout from '#containers/blog/Layout.astro'
 
 export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
   const posts = await getCollection('posts')

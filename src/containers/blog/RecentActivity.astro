@@ -1,21 +1,8 @@
 ---
-// import { ORG_API_URL, USER_API_URL } from '#constants/url'
 import Repository from './Repository.astro'
-import { repos } from '#constants/mocks'
+import { getRepositories } from '#services/repositories'
 
-// const [userResponse, orgResponse] = await Promise.all([
-//   fetch(USER_API_URL),
-//   fetch(ORG_API_URL),
-// ])
-
-// const [userData, reposData] = await Promise.all([
-//   userResponse.json(),
-//   orgResponse.json(),
-// ])
-
-// const repos = [...userData, ...reposData]
-
-// const repos =
+const repos = await getRepositories()
 ---
 
 <aside class='aside'>

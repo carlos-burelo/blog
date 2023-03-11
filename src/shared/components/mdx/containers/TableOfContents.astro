@@ -13,7 +13,9 @@ const { raw } = Astro.props
     {
       raw.map(heading => (
         <li class='item' style={`--tabs: ${heading.depth - 1}em`}>
-          <a href={`#${heading.slug}`}>{heading.text}</a>
+          <a rel='noopener noreferrer prefetch' href={`#${heading.slug}`}>
+            {heading.text}
+          </a>
         </li>
       ))
     }

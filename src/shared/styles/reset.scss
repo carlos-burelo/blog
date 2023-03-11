@@ -49,6 +49,8 @@
   font-weight: normal;
   font-style: normal;
   font-display: swap;
+  // optimize rendering
+
 }
 
 @font-face {
@@ -62,8 +64,10 @@
 html {
   color-scheme: dark;
   scroll-behavior: smooth;
-  font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  // font-family: 'IBM Plex Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  // font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'IBM Plex Sans', system-ui;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
@@ -102,16 +106,15 @@ a {
   }
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  @include tablet {
-    // font-weight: 600;
-  }
-}
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6 {
+//   @include tablet {
+//   }
+// }
 
 button {
   cursor: pointer;
@@ -137,4 +140,8 @@ img {
   max-width: 100%;
   width: 100%;
   border-radius: var(--midRadius);
+}
+
+em {
+  font-weight: 600;
 }

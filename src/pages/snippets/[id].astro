@@ -1,9 +1,8 @@
 ---
+import SnippetLayout from '#containers/snippets/SnippetLayout.astro'
 import Layout from '#layout'
 import type { GetStaticPaths } from 'astro'
 import { getCollection, type CollectionEntry } from 'astro:content'
-import Mdx from '#components/mdx/Mdx.astro'
-import SnippetLayout from '#containers/snippets/SnippetLayout.astro'
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const snippets = await getCollection('snippets')
@@ -27,7 +26,7 @@ const { snippet } = Astro.props
 </Layout>
 
 <style>
-  /* article {
-    display: grid;
-  } */
+  h1 {
+    font-size: 2.4em;
+  }
 </style>
