@@ -4,6 +4,7 @@ import type { GetStaticPaths } from 'astro'
 import { getCollection, type CollectionEntry } from 'astro:content'
 import Mdx from '#components/mdx/Mdx.astro'
 import PostArticle from '#containers/blog/PostArticle.astro'
+import { HOST } from '#constants/data'
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const posts = await getCollection('posts')
@@ -16,8 +17,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export type Props = { post: CollectionEntry<'posts'> }
 
 const { post } = Astro.props
+
+const image = `${HOST}/og/posts/${post.slug}.svg`
 ---
 
-<Layout>
+<Layout image={image}>
   <PostArticle payload={post} />
 </Layout>

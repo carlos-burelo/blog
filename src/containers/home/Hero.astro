@@ -1,7 +1,11 @@
+---
+import { t } from '#constants/data'
+---
+
 <main class='hero'>
-  <span class='hi'>Hi, I&apos;m</span>
-  <h1 class='name'>Carlos Burelo</h1>
-  <h2 class='profession'>Software Engineer & Web Developer</h2>
+  <span class='hi'>{t.hero.say}</span>
+  <h1 class='name'>{t.hero.name}</h1>
+  <h2 class='profession'>{t.hero.role}</h2>
 </main>
 
 <style lang='scss'>

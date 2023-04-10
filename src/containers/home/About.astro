@@ -2,22 +2,19 @@
 import Button from '#components/elements/Button.astro'
 import Section from '#components/elements/Section.astro'
 import Gallery from './Gallery.astro'
+import { ABOUT_ME, t } from '#constants/data'
 ---
 
-<Section title='About me' class='section'>
+<Section title={t.about.title} class='section'>
   <Gallery />
   <section class='info'>
-    <h3 class='title'>Who am I?</h3>
+    <h3 class='title'>{t.about.subTitle}</h3>
     <p class='bio'>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure quos eos
-      autem assumenda eveniet voluptate accusantium reprehenderit, in vero, aut
-      sed veniam voluptatibus consectetur necessitatibus accusamus voluptatum
-      sapiente doloribus mollitia facere laboriosam quas ut aliquid nesciunt.
-      Dolorum debitis consectetur maxime.
+      {ABOUT_ME}
     </p>
     <div class='buttons'>
-      <Button href='/works' text='See my works' />
-      <Button color='blue' href='/contact' text='Contact me' />
+      <Button href='/works' text={t.about.worksButton} />
+      <Button href='/contact' text={t.about.contactButton} color='blue' />
     </div>
   </section>
 </Section>

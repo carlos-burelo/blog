@@ -2,28 +2,18 @@ import image from '@astrojs/image'
 import mdx from "@astrojs/mdx"
 import prefetch from "@astrojs/prefetch"
 import sitemap from "@astrojs/sitemap"
-import svelte from "@astrojs/svelte"
 import htmlMinifier from "astro-html-minifier"
-import satori from "astro-satori"
 import { defineConfig } from 'astro/config'
-// import astroSatoriConfig from './config/astro-satori.mjs'
-import htmlMinifierConfig from './config/html-minifier.mjs'
-import rehypePrettyCode from './config/rehype-pretty-code.mjs'
-import sassConfig from './config/sass.mjs'
-import sitemapConfig from './config/sitemap.mjs'
+import htmlMinifierConfig from './src/config/html-minifier.mjs'
+import rehypePrettyCode from './src/config/rehype-pretty-code.mjs'
+import sassConfig from './src/config/sass.mjs'
+import sitemapConfig from './src/config/sitemap.mjs'
+import preact from "@astrojs/preact"
 
-
+// https://astro.build/config
 export default defineConfig({
   ...rehypePrettyCode,
   ...sassConfig,
   ...sitemapConfig,
-  integrations: [
-    htmlMinifier(htmlMinifierConfig),
-    // satori(astroSatoriConfig),
-    sitemap(),
-    image(),
-    svelte(),
-    mdx(),
-    prefetch(),
-  ]
+  integrations: [htmlMinifier(htmlMinifierConfig), sitemap(), image(), mdx(), prefetch(), preact()]
 })

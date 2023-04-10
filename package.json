@@ -12,21 +12,18 @@
 	"dependencies": {
 		"@astrojs/image": "^0.14.0",
 		"@astrojs/mdx": "^0.17.0",
+		"@astrojs/preact": "^2.1.0",
 		"@astrojs/prefetch": "^0.2.0",
 		"@astrojs/sitemap": "^1.2.0",
-		"@astrojs/svelte": "^2.0.2",
-		"@resvg/resvg-js": "^2.4.1",
 		"astro": "^2.0.14",
 		"astro-html-minifier": "^0.4.1",
-		"astro-satori": "^0.1.5",
 		"astro-seo": "^0.7.1",
-		"satori": "^0.4.2",
-		"satori-html": "^0.3.2",
-		"svelte": "^3.54.0"
+		"preact": "^10.6.5",
+		"satori": "^0.4.4"
 	},
 	"devDependencies": {
 		"rehype-pretty-code": "^0.9.4",
 		"sass": "^1.58.0",
-		"typescript": "^4.9.5"
+		"typescript": "^5.0.3"
 	}
 }

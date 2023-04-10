@@ -1,5 +1,6 @@
 import type { CollectionEntry } from 'astro:content'
 import type { MarkdownHeading } from 'astro'
+import type { JSXInternal } from 'preact/src/jsx'
 
 export declare global {
   interface Paginated<T> {
@@ -27,4 +28,6 @@ export declare global {
       }>
     }
   }
+
+  type Styles = JSXInternal.CSSProperties
 }

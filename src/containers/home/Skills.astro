@@ -1,12 +1,12 @@
 ---
 import Section from '#components/elements/Section.astro'
-import AstroJS from '#components/svg/logos/AstroJS.astro'
+import { t } from '#constants/data'
 import { SKILLS } from '#constants/user'
 ---
 
-<Section title='Skills' class='container'>
+<Section title={t.skills.title} class='container'>
   <section class='skills'>
-    <h3 class='title'>With experience in</h3>
+    <h3 class='title'>{t.skills.subTitle}</h3>
     <div class='icons'>
       {
         SKILLS.map(Icon => (
@@ -19,10 +19,10 @@ import { SKILLS } from '#constants/user'
   </section>
   <section class='text'>
     <h3 class='legend'>
-      I'm currently learning
+      Actualmente aprendiendo
       <em class='orange'>Rust🦀</em>
-      to make my projects much
-      <em class='blue'>faster🚀</em>
+      para hacer aplicaciones mucho mas
+      <em class='blue'>rapidas🚀</em>
     </h3>
   </section>
 </Section>

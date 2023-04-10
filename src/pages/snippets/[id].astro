@@ -1,4 +1,5 @@
 ---
+import { HOST } from '#constants/data'
 import SnippetLayout from '#containers/snippets/SnippetLayout.astro'
 import Layout from '#layout'
 import type { GetStaticPaths } from 'astro'
@@ -17,9 +18,11 @@ export interface Props {
 }
 
 const { snippet } = Astro.props
+
+const image = `${HOST}/og/posts/${snippet.slug}.svg`
 ---
 
-<Layout>
+<Layout image={image}>
   <SnippetLayout payload={snippet}>
     <h1>{snippet.data.title}</h1>
   </SnippetLayout>

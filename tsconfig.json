@@ -3,18 +3,44 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
-      "#layout": [ "./containers/(root)/Layout.astro" ],
-      "#assets/*": [ "../public/*" ],
-      "#containers/*": [ "./containers/*" ],
-      "#content/*": [ "./content/*" ],
-      "#islands/*": [ "./islands/*" ],
-      "#services/*": [ "./services/*" ],
-      "#adapters": [ "./shared/adapters/*" ],
-      "#components/*": [ "./shared/components/*" ],
-      "#constants/*": [ "./shared/constants/*" ],
-      "#libs/*": [ "./shared/libs/*" ],
-      "#styles/*": [ "./shared/styles/*" ],
-      "#utils/*": [ "./shared/utils/*" ]
-    }
+      "#layout": [
+        "./containers/(root)/Layout.astro"
+      ],
+      "#assets/*": [
+        "../public/*"
+      ],
+      "#containers/*": [
+        "./containers/*"
+      ],
+      "#content/*": [
+        "./content/*"
+      ],
+      "#islands/*": [
+        "./islands/*"
+      ],
+      "#services/*": [
+        "./shared/services/*"
+      ],
+      "#adapters": [
+        "./shared/adapters/*"
+      ],
+      "#components/*": [
+        "./shared/components/*"
+      ],
+      "#constants/*": [
+        "./shared/constants/*"
+      ],
+      "#libs/*": [
+        "./shared/libs/*"
+      ],
+      "#styles/*": [
+        "./shared/styles/*"
+      ],
+      "#utils/*": [
+        "./shared/utils/*"
+      ]
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact"
   }
 }

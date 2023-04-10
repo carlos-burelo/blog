@@ -1,40 +1,44 @@
 ---
 import { SEO } from 'astro-seo'
 
-const TITLE = 'Carlos Burelo - Web Developer & Software Engineer'
-const DESCRIPTION =
-  'I am a software engineer and web developer based in the United States. I specialize in building web applications and websites using React, Next.js, and Astro. I also have experience with Node.js, Express, and MongoDB.'
 const TYPE = 'website'
-const IMAGE = 'https://carlosburelo.vercel.app/hero.webp'
 const URL = 'https://carlosburelo.vercel.app'
 
 const TWITTER_HANDLE = '@carlosburelo9'
+
+interface Props {
+  title: string
+  description: string
+  image: string
+}
+
+const { title, description, image } = Astro.props
 ---
 
 <SEO
-  title={TITLE}
-  description={DESCRIPTION}
+  title={title}
+  description={description}
   canonical={URL}
   charset={'utf-8'}
   openGraph={{
     basic: {
-      title: TITLE + ' | Carlos Burelo',
+      title: title + ' | Carlos Burelo',
       type: TYPE,
-      image: IMAGE,
+      image: image,
       url: URL,
     },
     image: {
-      alt: TITLE,
+      alt: title,
     },
   }}
   twitter={{
     creator: TWITTER_HANDLE,
     site: TWITTER_HANDLE,
     card: 'summary_large_image',
-    description: DESCRIPTION,
-    image: IMAGE,
-    title: TITLE,
-    imageAlt: TITLE,
+    description: description,
+    image: image,
+    title: title,
+    imageAlt: title,
   }}
   extend={{
     link: [

@@ -1,29 +1,16 @@
 ---
 import Section from '#components/elements/Section.astro'
-
-const events = [
-  { title: 'Web Developer Lead by GDSC' },
-  { title: 'University Programming Advisor' },
-  { title: 'Electronics technician intern' },
-  { title: 'System engineer student' },
-  { title: 'Hobby Backend developer' },
-  { title: 'Freelance developer' },
-  { title: 'UX Designer' },
-]
+import { EXPERIENCE, t } from '#constants/data'
 ---
 
-<Section title='Experience'>
+<Section title={t.experience.title}>
   {
-    events.map(i => (
+    EXPERIENCE.map(i => (
       <div>
         <header>
           <h3>{i.title}</h3>
         </header>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat
-          quaerat dolores et velit accusantium adipisci nostrum reiciendis
-          voluptatum animi voluptates?
-        </p>
+        <p>{i.description}</p>
       </div>
     ))
   }
