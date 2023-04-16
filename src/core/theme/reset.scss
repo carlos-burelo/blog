@@ -148,6 +148,54 @@ code {
   font-family: 'Cascadia Code', monospace;
 }
 
+summary {
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--borderRadiusButton);
+  background-color: var(--backgroundColorButton);
+  color: var(--colorButton);
+  font-weight: var(--fontWeightButton);
+  font-size: 0.9em;
+  transition: all var(--transitionDuration) ease-in-out;
+
+  &:hover {
+    background-color: var(--backgroundColorButtonHover);
+    color: var(--colorButtonHover);
+  }
+}
+
+details {
+  border-radius: var(--borderRadiusCard);
+  background-color: var(--backgroundColorCard);
+  box-shadow: var(--boxShadowCard);
+  transition: all var(--transitionDuration) ease-in-out;
+  display: grid;
+  gap: 1rem;
+
+  &[open] {
+    summary {
+      background-color: var(--backgroundColorButtonHover);
+      color: var(--colorButtonHover);
+      margin-bottom: 1em;
+    }
+  }
+}
+
+blockquote {
+  border-left: 0.25rem solid var(--colorText);
+  padding-left: 1rem;
+  margin-left: 0;
+  color: var(--colorText);
+  font-style: italic;
+  opacity: 0.8;
+  background-color: var(--backgroundColorSelection);
+
+  border-radius: 0 0.5rem 0.5rem 0;
+  padding: 1rem 1.5rem;
+}
+
 .container {
   padding-inline: var(--paddingLayout);
 }

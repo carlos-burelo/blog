@@ -1,4 +1,4 @@
-const Parser = new Intl.DateTimeFormat('en', {
+const Parser = new Intl.DateTimeFormat('es', {
   year: 'numeric',
   month: 'long',
   day: 'numeric'

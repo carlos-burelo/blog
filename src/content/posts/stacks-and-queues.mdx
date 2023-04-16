@@ -1,0 +1,636 @@
+---
+title: Como funcionan las pilas y colas en la programación y como implementarlas en diferentes lenguajes de programación
+category: "explain"
+createdAt: 2023-04-16
+updatedAt: 2023-04-16
+---
+
+## Introducción
+
+Las pilas y colas son estructuras de datos que se utilizan en la programación para almacenar datos. Las pilas y colas son estructuras de datos lineales, lo que significa que solo pueden almacenar datos en una dirección. Las pilas y colas son estructuras de datos de tipo LIFO (último en entrar, primero en salir) y FIFO (primero en entrar, primero en salir), respectivamente.
+
+## Pilas
+
+![Stack introduction](/media/stacks-and-queues-1.png)
+
+Las pilas son esa estructura de datos que usariamos en la vida real para apilar informacion y poder acceder a la ultima informacion que se agrego.
+Supongamos que tenemos una pila de libros, y queremos acceder al libro que esta en la parte superior de la pila, para eso lo que haremos es sacar todos los libros que estan encima de el, y asi podremos acceder al libro que queremos.
+
+![Stack example](/media/stacks-and-queues-2.png)
+
+Si pensamos en la pila como una lista de nodos, asumiento que el ultimo nodo que se agrego se enlaza con el penultimo nodo, y asi sucesivamente, entonces el ultimo nodo que se agrego sera el primero en salir de la pila.
+
+### Operaciones
+
+- **Push**: Agregar un elemento a la pila.
+- **Pop**: Eliminar un elemento de la pila.
+- **Peek**: Obtener el elemento que esta en la parte superior de la pila.
+- **isEmpty**: Verificar si la pila esta vacia.
+
+### Implementacion de pilas en diferentes lenguajes de programación
+
+<details>
+  <summary>Python</summary>
+
+```python
+class StackNode:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+class Stack:
+    def __init__(self):
+        self.top = None
+
+    def push(self, value):
+        node = StackNode(value)
+        node.next = self.top
+        self.top = node
+
+    def pop(self):
+        if self.top is None:
+            return None
+        node = self.top
+        self.top = self.top.next
+        return node.value
+
+    def peek(self):
+        if self.top is None:
+            return None
+        return self.top.value
+
+    def is_empty(self):
+        return self.top is None
+
+    def print(self):
+        node = self.top
+        while node is not None:
+            print(node.value)
+            node = node.next
+    
+    def __str__(self):
+        return str(self.top)
+
+stack = Stack()
+stack.push(1)
+stack.push(2)
+stack.push(3)
+
+print(stack.peek()) # 3
+```
+</details>
+
+<details>
+  <summary>JavaScript</summary>
+
+```javascript
+class StackNode {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
+class Stack {
+  constructor() {
+    this.top = null;
+  }
+
+  push(value) {
+    const node = new StackNode(value);
+    node.next = this.top;
+    this.top = node;
+  }
+
+  pop() {
+    if (this.top === null) {
+      return null;
+    }
+    const node = this.top;
+    this.top = this.top.next;
+    return node.value;
+  }
+
+  peek() {
+    if (this.top === null) {
+      return null;
+    }
+    return this.top.value;
+  }
+
+  isEmpty() {
+    return this.top === null;
+  }
+
+  print() {
+    let node = this.top;
+    while (node !== null) {
+      console.log(node.value);
+      node = node.next;
+    }
+  }
+
+  toString() {
+    return this.top;
+  }
+}
+
+const stack = new Stack();
+stack.push(1);
+stack.push(2);
+stack.push(3);
+
+console.log(stack.peek()); // 3
+```
+</details>
+
+<details>
+  <summary>Java</summary>
+
+```java
+class StackNode {
+  int value;
+  StackNode next;
+
+  StackNode(int value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
+class Stack {
+  StackNode top;
+
+  Stack() {
+    this.top = null;
+  }
+
+  void push(int value) {
+    StackNode node = new StackNode(value);
+    node.next = this.top;
+    this.top = node;
+  }
+
+  int pop() {
+    if (this.top == null) {
+      return -1;
+    }
+    StackNode node = this.top;
+    this.top = this.top.next;
+    return node.value;
+  }
+
+  int peek() {
+    if (this.top == null) {
+      return -1;
+    }
+    return this.top.value;
+  }
+
+  boolean isEmpty() {
+    return this.top == null;
+  }
+
+  void print() {
+    StackNode node = this.top;
+    while (node != null) {
+      System.out.println(node.value);
+      node = node.next;
+    }
+  }
+
+  @Override
+  public String toString() {
+    return this.top.toString();
+  }
+}
+
+public class Main {
+  public static void main(String[] args) {
+    Stack stack = new Stack();
+    stack.push(1);
+    stack.push(2);
+    stack.push(3);
+
+    System.out.println(stack.peek()); // 3
+  }
+}
+```
+</details>
+<details>
+  <summary>C++</summary>
+
+```cpp
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class StackNode {
+  public:
+    int value;
+    StackNode *next;
+
+    StackNode(int value) {
+      this->value = value;
+      this->next = NULL;
+    }
+};
+
+class Stack {
+  public:
+    StackNode *top;
+
+    Stack() {
+      this->top = NULL;
+    }
+
+    void push(int value) {
+      StackNode *node = new StackNode(value);
+      node->next = this->top;
+      this->top = node;
+    }
+
+    int pop() {
+      if (this->top == NULL) {
+        return -1;
+      }
+      StackNode *node = this->top;
+      this->top = this->top->next;
+      return node->value;
+    }
+
+    int peek() {
+      if (this->top == NULL) {
+        return -1;
+      }
+      return this->top->value;
+    }
+
+    bool isEmpty() {
+      return this->top == NULL;
+    }
+
+    void print() {
+      StackNode *node = this->top;
+      while (node != NULL) {
+        cout << node->value << endl;
+        node = node->next;
+      }
+    }
+
+    string toString() {
+      return to_string(this->top);
+    }
+};
+
+int main() {
+  Stack stack;
+  stack.push(1);
+  stack.push(2);
+  stack.push(3);
+
+  cout << stack.peek() << endl; // 3
+
+  return 0;
+}
+```
+</details>
+
+### Resumen
+
+Retomando lo que hemos visto hasta ahora, podemos resumir las pilas de la siguiente manera:
+
+- Las pilas son estructuras de datos que siguen el principio de LIFO (Last In First Out), es decir, el ultimo elemento que entra es el primero que sale.
+- Las pilas son muy similares a las colas, pero en lugar de que el primer elemento que entra sea el primero en salir, el ultimo elemento que entra es el primero en salir.
+- Las pilas tienen dos operaciones principales: **push** y **pop**.
+- **push**: Agrega un elemento al tope de la pila.
+- **pop**: Elimina el elemento que esta en el tope de la pila.
+- **peek**: Devuelve el elemento que esta en el tope de la pila.
+- **isEmpty**: Devuelve true si la pila esta vacia, false en caso contrario.
+
+
+## Colas
+
+![Queue introduction](/media/stacks-and-queues-3.png)
+
+Las colas son estructuras de datos que siguen el principio de FIFO (First In First Out), es decir, el primer elemento que entra es el primero que sale. Las colas son muy similares a las pilas, pero en lugar de que el ultimo elemento que entra sea el primero en salir, el primer elemento que entra es el primero en salir.
+
+![Queue example](/media/stacks-and-queues-4.png)
+
+### Operaciones
+
+- **Enqueue**: Agrega un elemento al final de la cola.
+- **Dequeue**: Elimina el primer elemento de la cola.
+- **Peek**: Devuelve el primer elemento de la cola.
+- **isEmpty**: Devuelve true si la cola esta vacia, false en caso contrario.
+
+### Implementacion de pilas en diferentes lenguajes de programación
+
+<details>
+  <summary>Python</summary>
+
+```python
+class QueueNode:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+class Queue:
+    def __init__(self):
+        self.first = None
+        self.last = None
+
+    def enqueue(self, value):
+        node = QueueNode(value)
+        if self.last is not None:
+            self.last.next = node
+        self.last = node
+        if self.first is None:
+            self.first = self.last
+
+    def dequeue(self):
+        if self.first is None:
+            return None
+        node = self.first
+        self.first = self.first.next
+        if self.first is None:
+            self.last = None
+        return node.value
+
+    def peek(self):
+        if self.first is None:
+            return None
+        return self.first.value
+
+    def is_empty(self):
+        return self.first is None
+
+    def print(self):
+        node = self.first
+        while node is not None:
+            print(node.value)
+            node = node.next
+
+    def __str__(self):
+        return str(self.first)
+
+queue = Queue()
+queue.enqueue(1)
+queue.enqueue(2)
+queue.enqueue(3)
+
+print(queue.peek()) # 1
+```
+</details>
+
+<details>
+  <summary>JavaScript</summary>
+
+```javascript
+class QueueNode {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
+class Queue {
+  constructor() {
+    this.first = null;
+    this.last = null;
+  }
+
+  enqueue(value) {
+    const node = new QueueNode(value);
+    if (this.last !== null) {
+      this.last.next = node;
+    }
+    this.last = node;
+    if (this.first === null) {
+      this.first = this.last;
+    }
+  }
+
+  dequeue() {
+    if (this.first === null) {
+      return null;
+    }
+    const node = this.first;
+    this.first = this.first.next;
+    if (this.first === null) {
+      this.last = null;
+    }
+    return node.value;
+  }
+
+  peek() {
+    if (this.first === null) {
+      return null;
+    }
+    return this.first.value;
+  }
+
+  isEmpty() {
+    return this.first === null;
+  }
+
+  print() {
+    let node = this.first;
+    while (node !== null) {
+      console.log(node.value);
+      node = node.next;
+    }
+  }
+
+  toString() {
+    return this.first;
+  }
+}
+
+const queue = new Queue();
+queue.enqueue(1);
+queue.enqueue(2);
+queue.enqueue(3);
+
+console.log(queue.peek()); // 1
+```
+</details>
+
+<details>
+  <summary>Java</summary>
+
+```java
+class QueueNode {
+  int value;
+  QueueNode next;
+
+  QueueNode(int value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
+class Queue {
+  QueueNode first;
+  QueueNode last;
+
+  Queue() {
+    this.first = null;
+    this.last = null;
+  }
+
+  void enqueue(int value) {
+    QueueNode node = new QueueNode(value);
+    if (this.last != null) {
+      this.last.next = node;
+    }
+    this.last = node;
+    if (this.first == null) {
+      this.first = this.last;
+    }
+  }
+
+  int dequeue() {
+    if (this.first == null) {
+      return -1;
+    }
+    QueueNode node = this.first;
+    this.first = this.first.next;
+    if (this.first == null) {
+      this.last = null;
+    }
+    return node.value;
+  }
+
+  int peek() {
+    if (this.first == null) {
+      return -1;
+    }
+    return this.first.value;
+  }
+
+  boolean isEmpty() {
+    return this.first == null;
+  }
+
+  void print() {
+    QueueNode node = this.first;
+    while (node != null) {
+      System.out.println(node.value);
+      node = node.next;
+    }
+  }
+
+  @Override
+  public String toString() {
+    return this.first.toString();
+  }
+}
+
+public class Main {
+  public static void main(String[] args) {
+    Queue queue = new Queue();
+    queue.enqueue(1);
+    queue.enqueue(2);
+    queue.enqueue(3);
+
+    System.out.println(queue.peek()); // 1
+  }
+}
+```
+
+</details>
+
+<details>
+  <summary>C++</summary>
+
+```cpp
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+struct QueueNode {
+  int value;
+  QueueNode *next;
+
+  QueueNode(int value) {
+    this->value = value;
+    this->next = NULL;
+  }
+};
+
+class Queue {
+  QueueNode *first;
+  QueueNode *last;
+
+public:
+  Queue() {
+    this->first = NULL;
+    this->last = NULL;
+  }
+
+  void enqueue(int value) {
+    QueueNode *node = new QueueNode(value);
+    if (this->last != NULL) {
+      this->last->next = node;
+    }
+    this->last = node;
+    if (this->first == NULL) {
+      this->first = this->last;
+    }
+  }
+
+  int dequeue() {
+    if (this->first == NULL) {
+      return -1;
+    }
+    QueueNode *node = this->first;
+    this->first = this->first->next;
+    if (this->first == NULL) {
+      this->last = NULL;
+    }
+    return node->value;
+  }
+
+  int peek() {
+    if (this->first == NULL) {
+      return -1;
+    }
+    return this->first->value;
+  }
+
+  bool isEmpty() {
+    return this->first == NULL;
+  }
+
+  void print() {
+    QueueNode *node = this->first;
+    while (node != NULL) {
+      cout << node->value << endl;
+      node = node->next;
+    }
+  }
+
+  string toString() {
+    return to_string(this->first);
+  }
+};
+
+int main() {
+  Queue queue = Queue();
+  queue.enqueue(1);
+  queue.enqueue(2);
+  queue.enqueue(3);
+
+  cout << queue.peek() << endl; // 1
+}
+```
+</details>
+
+
+### Resumen
+
+Para finalizar, una cola es una estructura de datos que permite almacenar elementos en orden de llegada. Los elementos se pueden agregar y eliminar de la cola. La cola tiene dos operaciones básicas: `enqueue` y `dequeue`. El `enqueue` agrega un elemento al final de la cola. El `dequeue` elimina el elemento del frente de la cola. La cola tiene una operación adicional: `peek`. El `peek` devuelve el elemento del frente de la cola sin eliminarlo. La cola tiene una operación adicional: `isEmpty`. El `isEmpty` devuelve `true` si la cola está vacía y `false` si no lo está.
+

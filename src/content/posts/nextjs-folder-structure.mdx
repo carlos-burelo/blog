@@ -1,6 +1,103 @@
 ---
-title: 'Estructuración de carpetas en Next.js'
+title: 'Arquitectura de carpetas para un proyecto escalable en Next.js 13'
 createdAt: 2023-04-11
-updatedAt: 2023-04-11
+updatedAt: 2023-04-16
 category: "Proposal"
 ---
+
+> **Nota:** Este post es una propuesta de arquitectura de carpetas para un proyecto en Next.js 13, si tienes alguna sugerencia o comentario puedes dejarlo en los comentarios.
+
+## Introducción
+
+En este post voy a compartir mi propuesta de arquitectura de carpetas para un proyecto en [Next.js 13](https://beta.nextjs.org/docs), esta propuesta se basa en la experiencia que he tenido trabajando en proyectos de diferentes tamaños y en diferentes tecnologías, y en mi opinión es una propuesta que se puede adaptar a cualquier proyecto.
+
+## Propuesta 1: Arquitectura de carpetas
+
+### Carpeta `src`
+
+La carpeta `src` es la carpeta principal de nuestro proyecto, en esta carpeta se encuentran todos los archivos que componen nuestro proyecto, esta carpeta es la que se compila y se ejecuta en el servidor de desarrollo de Next.js y es sumamente importante que esta carpeta sea el punto de entrada de nuestro proyecto y no usar el directorio raíz.
+
+### Carpeta `public`
+
+No hace falta explicar mucho sobre esta carpeta, esta carpeta es la que contiene los archivos estáticos que se van a servir en el servidor de producción, por ejemplo, imágenes, fuentes, archivos de audio, etc.
+
+### Carpeta `src/app`
+
+Esta carpeta es el equivalente a la carpeta `pages` de Next.js, en esta carpeta se encuentran todos los archivos que componen las páginas de nuestra aplicación, por ejemplo, _/page.tsx_, _/about/page.tsx_.
+
+### Carpeta `src/core`
+
+Esta carpeta contiene los archivos que componen el núcleo de la aplicación, en esta carpeta se encuentran los archivos que se compilan y se ejecutan en el servidor de desarrollo de Next.js, por ejemplo, _componentes_, _libs_, _hooks_, etc.
+
+
+### `core`
+
+- `components`: Componentes globales de la aplicación (ej. Navbar, Footer, etc.) en esta carpeta se encuentran los componentes que se pueden reutilizar en cualquier parte de la aplicación y no son específicos de una página.
+
+- `hooks`: Hooks globales de la aplicación (ej. useAuth, useUser, etc.) en esta carpeta se encuentran los hooks que se pueden reutilizar en cualquier parte de la aplicación y no son específicos de una página.
+
+- `libs`: Librerías globales de la aplicación (ej. api, auth, etc.) en esta carpeta se encuentran las librerías que se utilizan en la aplicacion, por ejemplo, una librería para hacer peticiones a una API, una librería para manejar la autenticación, etc.
+
+- `styles|theme`: Estilos globales de la aplicación (ej. global.css, theme.ts, etc.) en esta carpeta se encuentran los estilos globales de la aplicación, por ejemplo, estilos globales, estilos de temas, etc.
+
+- `utils`: Utilidades globales de la aplicación (ej. formatNumber, formatCurrency, etc.) en esta carpeta se encuentran aquellas utilidades que requieren de una lógica mas sencilla y regularmente solo cumplen una función, por ejemplo, formatear un número, formatear una moneda, etc.
+
+- `types`: Tipos globales de la aplicación (ej. User, Post, etc.) en esta carpeta se encuentran los tipos que se utilizan en la aplicación, por ejemplo, tipos de usuario, tipos de post, etc.
+
+- `constants`: Constantes globales de la aplicación (ej. API_URL, API_VERSION, etc.) en esta carpeta se encuentran las constantes que se utilizan en la aplicación, por ejemplo, URL de la API, versión de la API, etc.
+
+
+### Ejemplo de una aplicación
+
+```bash
+├── 📁 src
+│   ├── 📁 app
+│   │   ├── 📁 about
+│   │   │   ├── 📄 page.tsx
+│   │   │   ├── 📄 styles.module.css
+│   │   │   └── 📁 components
+│   │   ├── 📁 home
+│   │   │   ├── 📄 page.tsx
+│   │   │   ├── 📄 styles.module.css
+│   │   │   └── 📁 components
+|   ├── 📁 core
+│   │   ├── 📁 components
+│   │   │   ├── 📄 Navbar.tsx
+│   │   │   ├── 📄 Footer.tsx
+│   │   │   └── 📄 Sidebar.tsx
+│   │   ├── 📁 hooks
+│   │   │   ├── 📄 useAuth.ts
+│   │   │   ├── 📄 useUser.ts
+│   │   │   └── 📄 usePosts.ts
+│   │   ├── 📁 libs
+│   │   │   ├── 📄 api.ts
+│   │   │   ├── 📄 auth.ts
+│   │   │   └── 📄 posts.ts
+│   │   ├── 📁 styles
+│   │   │   ├── 📄 global.css
+│   │   │   ├── 📄 theme.ts
+│   │   │   └── 📄 mixins.ts
+│   │   ├── 📁 utils
+│   │   │   ├── 📄 formatNumber.ts
+│   │   │   ├── 📄 formatCurrency.ts
+│   │   │   └── 📄 formatTime.ts
+│   │   ├── 📁 types
+│   │   │   ├── 📄 User.ts
+│   │   │   ├── 📄 Post.ts
+│   │   │   └── 📄 Comment.ts
+│   │   ├── 📁 constants
+│   │   │   ├── 📄 API.ts
+│   │   │   ├── 📄 APP.ts
+│   │   │   └── 📄 ENV.ts
+│   ├── 📁 public
+│   │   ├── 📄 favicon.ico
+│   │   ├── 📄 logo.svg
+│   │   └── 📄 robots.txt
+├── 📄 .gitignore
+├── 📄 next-env.d.ts
+├── 📄 next.config.js
+├── 📄 package.json
+├── 📄 README.md
+├── 📄 tsconfig.json
+└── 📄 pnpm-lock.yaml
+```
