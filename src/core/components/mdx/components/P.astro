@@ -1,0 +1,13 @@
+---
+const props = Astro.props
+---
+
+<p {...props}>
+  <slot />
+</p>
+<style lang='scss'>
+  p {
+    font-size: 1.1em;
+    line-height: 1.9;
+  }
+</style>

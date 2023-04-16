@@ -1,0 +1,10 @@
+---
+type Props = astroHTML.JSX.AnchorHTMLAttributes & {
+  text?: string
+}
+const props = Astro.props
+---
+
+<a {...props} rel='noopener noreferrer prefetch'>
+  <slot>{props.text}</slot>
+</a>

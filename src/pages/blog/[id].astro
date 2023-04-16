@@ -1,18 +1,11 @@
 ---
-import Layout from '#layout'
-import type { GetStaticPaths } from 'astro'
-import { getCollection, type CollectionEntry } from 'astro:content'
-import Mdx from '#components/mdx/Mdx.astro'
-import PostArticle from '#containers/blog/PostArticle.astro'
 import { HOST } from '#constants/data'
+import Layout from '#layout'
+import params from '#libs/params'
+import Markdown from '#layouts/content/Markdown.astro'
+import type { CollectionEntry } from 'astro:content'
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await getCollection('posts')
-  return posts.map(post => ({
-    params: { id: post.slug },
-    props: { post: post },
-  }))
-}
+export const { getStaticPaths } = params('posts', 'post')
 
 export type Props = { post: CollectionEntry<'posts'> }
 
@@ -22,5 +15,5 @@ const image = `${HOST}/og/posts/${post.slug}.svg`
 ---
 
 <Layout image={image}>
-  <PostArticle payload={post} />
+  <Markdown payload={post} />
 </Layout>

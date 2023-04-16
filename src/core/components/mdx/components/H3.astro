@@ -1,0 +1,10 @@
+---
+import Link from '#components/natives/Link.astro'
+const { id } = Astro.props
+---
+
+<Link href={`#${id}`} id={id}>
+  <h3>
+    <slot />
+  </h3>
+</Link>

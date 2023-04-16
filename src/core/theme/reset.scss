@@ -1,0 +1,153 @@
+@import 'mixins';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  &::after,
+  &::before {
+    box-sizing: inherit;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  &::selection {
+    background-color: var(--backgroundColorSelection);
+    color: var(--colorSelection);
+  }
+
+  &::-moz-selection {
+    background-color: var(--backgroundColorSelection);
+    color: var(--colorSelection);
+  }
+
+  &::-webkit-scrollbar {
+    width: 0.5em;
+    height: 0.5em;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--backgroundColorScrollbar);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--backgroundColorScrollbarThumb);
+    border-radius: var(--borderRadiusCard);
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--backgroundColorScrollbarThumbHover);
+  }
+}
+
+html {
+  color-scheme: dark light;
+  scroll-behavior: smooth;
+  font-family: 'IBM Plex Sans', sans-serif, system-ui;
+  font-size: var(--fontSizeBase);
+}
+
+body {
+  background-color: var(--backgroundColorBody);
+  color: var(--colorTitle);
+
+  &::after,
+  &::before {
+    position: fixed;
+    z-index: -1;
+    width: 200px;
+    height: 200px;
+    content: '';
+    background: var(--backgroundColorHeaderDiffuse);
+    filter: blur(100px);
+  }
+
+  &::before {
+    top: calc(var(--heightHeader) + 8.5rem);
+    left: 2.5rem;
+  }
+
+  &::after {
+    right: 2.5rem;
+    bottom: calc(var(--footerHeight));
+  }
+}
+
+a {
+  color: var(--colorTitle);
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+
+  &[id] {
+    scroll-margin-top: calc(var(--heightHeader) + 1rem);
+    width: max-content;
+  }
+}
+
+h2,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  code {
+    font-weight: var(--fontWeightRemark);
+  }
+}
+
+
+button {
+  cursor: pointer;
+  background-color: var(--backgroundColorButton);
+  border-radius: var(--borderRadiusButton);
+  padding: 0.5rem 1rem;
+  color: var(--colorButton);
+  font-weight: var(--fontWeightButton);
+  font-size: 0.9em;
+  transition: all var(--transitionDuration) ease-in-out;
+  border: none;
+
+  &:hover {
+    background-color: var(--backgroundColorButtonHover);
+    color: var(--colorButtonHover);
+  }
+}
+
+p {
+  line-height: 1.8;
+  color: var(--colorText);
+}
+
+svg {
+  fill: currentColor;
+  width: 1.25em;
+  height: 1.25em;
+  display: block;
+}
+
+img {
+  max-width: 100%;
+  width: 100%;
+  border-radius: var(--borderRadiusImage);
+}
+
+em {
+  font-weight: var(--fontWeightRemark);
+  color: var(--colorTextItalic);
+}
+
+strong {
+  font-weight: var(--fontWeightRemark);
+  color: var(--colorTextBold);
+}
+
+code {
+  font-family: 'Cascadia Code', monospace;
+}
+
+.container {
+  padding-inline: var(--paddingLayout);
+}

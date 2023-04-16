@@ -1,21 +1,13 @@
 ---
+import Mdx from '#components/mdx/Mdx.astro'
 import { HOST } from '#constants/data'
-import SnippetLayout from '#containers/snippets/SnippetLayout.astro'
 import Layout from '#layout'
-import type { GetStaticPaths } from 'astro'
-import { getCollection, type CollectionEntry } from 'astro:content'
+import params from '#libs/params'
+import type { CollectionEntry } from 'astro:content'
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const snippets = await getCollection('snippets')
-  return snippets.map(snippet => ({
-    params: { id: snippet.slug },
-    props: { snippet: snippet },
-  }))
-}
+export const { getStaticPaths } = params('snippets', 'snippet')
 
-export interface Props {
-  snippet: CollectionEntry<'snippets'>
-}
+type Props = { snippet: CollectionEntry<'snippets'> }
 
 const { snippet } = Astro.props
 
@@ -23,13 +15,17 @@ const image = `${HOST}/og/posts/${snippet.slug}.svg`
 ---
 
 <Layout image={image}>
-  <SnippetLayout payload={snippet}>
+  <section>
     <h1>{snippet.data.title}</h1>
-  </SnippetLayout>
+    <Mdx payload={snippet} />
+  </section>
 </Layout>
 
-<style>
+<style lang='scss'>
   h1 {
     font-size: 2.4em;
+  }
+  section {
+    @include flex-column;
   }
 </style>

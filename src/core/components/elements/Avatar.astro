@@ -1,0 +1,27 @@
+---
+import { Image } from '@astrojs/image/components'
+import defaultImage from '#assets/avatar.webp'
+
+export interface Props {
+  src?: string
+  size?: number
+}
+
+const { src = defaultImage, size = 50 } = Astro.props
+---
+
+<Image
+  loading='eager'
+  src={src}
+  alt='Avatar image'
+  width={size}
+  height={size}
+  class='avatar'
+/>
+
+<style lang='scss' define:vars={{ size }}>
+  .avatar {
+    border-radius: 50%;
+    width: unquote('' + var(--size) + 'px');
+  }
+</style>

@@ -1,8 +1,21 @@
 ---
 import Layout from '#layout'
-import WorksLayout from '#containers/works/Layout.astro'
+import WorkCard from '#layouts/works/WorkCard.astro'
+import { getCollection } from 'astro:content'
+
+export const works = await getCollection('works')
 ---
 
 <Layout>
-  <WorksLayout />
+  <div class='works'>
+    {works.map(work => <WorkCard {...work} />)}
+  </div>
 </Layout>
+
+<style lang='scss'>
+  .works {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 1rem;
+  }
+</style>

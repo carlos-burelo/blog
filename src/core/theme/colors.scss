@@ -1,0 +1,30 @@
+.dark {
+  // Convention: --{property}{Scope}{State|Modifier}?
+
+  // BASE
+
+  --backgroundColorBody: #06080c;
+  --colorTitle: #eff0ff;
+  --colorText: #98a0b3;
+  --colorTextItalic: #c4c9d4;
+  --colorTextBold: #e8d8fd;
+
+  // HEADER
+
+  --backgroundColorHeader: #06080cce;
+  --borderColorHeader: #ffffff10;
+
+  // NAVLINKS
+
+  --colorNavLink: #979797;
+  --colorNavLinkHover: var(--colorTitle);
+
+  // BUTTONS
+
+  --colorButton: var(--colorTitle);
+  --colorButtonHover: var(--colorTitle);
+  --borderColorButton: #f8f8f813;
+  --borderColorButtonHover: #f8f8f828;
+  --backgroundColorButton: #f8f8f805;
+  --backgroundColorButtonHover: #f8f8f808;
+}

@@ -1,0 +1,83 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import PostCard from './PostCard.astro'
+
+type Props = {
+  posts: CollectionEntry<'posts'>[]
+}
+const { posts } = Astro.props
+---
+
+<script src='#scripts/slider.ts'></script>
+
+<div class='sliderContainer'>
+  <div class='slider'>
+    {posts.map(post => <PostCard {...post} />)}
+  </div>
+  <div class='controls'>
+    {
+      posts.map((_, i) => (
+        <button type='button' aria-label={`Go to slide ${i + 1}`}>
+          <span />
+        </button>
+      ))
+    }
+  </div>
+</div>
+
+<style lang='scss'>
+  .sliderContainer {
+    display: grid;
+  }
+  .slider {
+    --visibles: 1;
+    --space: 0.6em;
+    --slide-size: 5px;
+    --slide-width: calc(
+      (100% - (var(--visibles) - 1) * var(--space)) / var(--visibles)
+    );
+
+    display: grid;
+    grid: 1fr / auto-flow var(--slide-width);
+    grid-gap: var(--space);
+    margin: 0;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .controls {
+    display: grid;
+    grid: 1fr / auto-flow 1fr;
+    gap: 1rem;
+    margin-top: 0.5rem;
+    padding-inline: 1rem;
+
+    button {
+      height: 0.55rem;
+      background-color: transparent;
+      border: none;
+      padding: 0;
+      padding-block: 0.5rem;
+      span {
+        width: 100%;
+        height: 0.2em;
+        background-color: var(--backgroundColorSlider);
+        display: block;
+        border-radius: var(--borderRadiusCard);
+      }
+    }
+    .active {
+      span {
+        background-color: var(--backgroundColorSliderHover);
+      }
+    }
+    @include fold {
+      padding-inline: 0;
+      grid: 1fr / repeat(3, 40px);
+    }
+  }
+</style>

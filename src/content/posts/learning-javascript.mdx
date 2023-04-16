@@ -2,18 +2,19 @@
 title: "Learning some common javascript concepts step by step"
 category: "explain"
 createdAt: 2022-04-21
+updatedAt: 2023-10-04
 ---
 
-# Introducción
+## Introducción
 
 Personalmente creo que es de vital importancia entender algunos conceptos clave de javascript, como por ejemplo, el scope, la mutación, las funciones y los objetos, etc.
 ya que estos nos proveen de diversas características y funciones que nos permiten trabajar con el lenguaje de forma mas sencilla y eficiente, por eso me he dado a la tarea de agrupar algunas de estas características de javascript que lo hacen el lenguaje popular que es hoy, y tratare de simplificar lo mas posible el tema para que pueda ser entendido por los demás 😀.
 
-# Características del lenguaje
+## Características del lenguaje
 
 Como cualquier otro lenguaje de programación, javascript esta dotado de diversas características y peculiaridades que son las que definen con que facilidad podremos trabajar al momento de crear nuestras aplicaciones, siendo uno de los lenguajes mas populares actualmente veamos que nos puede ofrecer.
 
-## Scope 🟦
+### Scope 🟦
 
 El **scope** en palabras sencillas lo podemos entender como un _ambiente_ o _entorno_ en el que se encuentra una variable, una función, una clase, etc.
 
@@ -149,13 +150,13 @@ const res = fetch('https://url/api')
 
 Una promesa cuenta con 3 partes, el `.then(){:js}`, `.catch(){:js}`, y `.finally(){:js}` que son métodos que caracterizan a una promesa aunque por el momento solo hablaremos de then y catch que son los más comunes.
 
-### `.then(){:js}`
+#### `.then(){:js}`
 
 Posiblemente este es el método principal por el cual se distinguen la promesas ya que es el que se encargará de devolver o transformar un valor dependiendo de la implementación.
 
 Mas fácilmente podemos entender a `then(){:js}` como el método que hace algo una vez que la promesa ha terminado, y dentro de then() escribimos un callback que es el que se encargará de recibir la respuesta que la promesa haya devuelto.
 
-### `.catch(){:js}`
+#### `.catch(){:js}`
 
 Catch podemos considerarlo como un método auxiliar, es decir, una contra-medida en caso de que la promesa no se resuelva correctamente y está retorne un error, como por ejemplo, Si una petición a una API devuelve un código de estado en el rango de 400 a 500, esto se consideraría como una promesa no resuelta, por lo que el método _.then()_ quedaría anulado y se saltaría directamente al método `catch(){:js}` y este recibiría un callback para manejar el error, por ejemplo:
 
@@ -184,6 +185,6 @@ async function getData () {
 
 Tanto `fetch(){:js}` como su método `.json(){:js}` son funciones asíncronas, es decir, que toman un determinado tiempo antes de devolver un valor, por lo que definimos la palabra **await** para indicarle que nos esperaremos a que la promesa nos devuelva el valor que esperamos para poder continuar con las operaciones, en este caso como ambas funciones son asíncronas, definimos 2 veces las palabras await para tener una continuidad correcta en el procesamiento de los datos.
 
-### Notas finales
+## Notas finales
 
 Quisiera hacer mención que algunas de las cosas que mencioné como algunas reglas de escritura de código, son opiniones personales y no deberían tomarse como norma absoluta para el lenguaje, pero si debo mencionar que muchas de estas reglas se usan actualmente ya que permite una mejor colaboración en las aplicaciones que realices.

@@ -1,0 +1,27 @@
+---
+import { t } from '#constants/data'
+---
+
+<main class='hero'>
+  <span class='hi'>{t.hero.say}</span>
+  <h1 class='name'>{t.hero.name}</h1>
+  <h2 class='profession'>{t.hero.role}</h2>
+</main>
+
+<style lang='scss'>
+  .hero {
+    height: calc(100vh - var(--heightHeader));
+    @include grid(center, flex-start);
+  }
+  .hi {
+    font-size: 1.5rem;
+  }
+  .name {
+    font-size: 5em;
+    font-weight: var(--fontWeightTitle);
+  }
+  .profession {
+    font-weight: var(--fontWeightRemark);
+    font-size: 2em;
+  }
+</style>

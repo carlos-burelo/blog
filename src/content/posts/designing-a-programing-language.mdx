@@ -2,6 +2,7 @@
 title: "Designing a programming language inspired by Rust and TypeScript"
 category: "Idea"
 createdAt: 2023-01-16
+updatedAt: 2023-01-16
 ---
 
 # Riot Language specification
@@ -57,13 +58,11 @@ var tuple: tuple<int, str> = (1, "Hello")
 
 // tuple with other type declaration (recomended)
 var otherTuple: (int, str) = (1, "Hello")
-
-  ```
+```
 
 ## Objects
 
 ```ts
-
 // normal object
 var obj = {
   name: "John",
@@ -106,8 +105,7 @@ var otherObj: Person = {
   age: 20,
   sayHello: fn(): void -> print("Hello")
 }
-
-  ```
+```
 
 ## Lists
 
@@ -132,7 +130,7 @@ var multipleTypesList: list<int, str, bool> = [1, "Hello", true]
 
 // list with multiple types (recomended)
 var otherMultipleTypesList: (int, str, bool)[] = [1, "Hello", true]
-  ```
+```
 
 ## Functions
 
@@ -156,14 +154,13 @@ fn sayHello(name: str): str {
 fn sayHello(name: str, age: int): str {
   return "Hello " + name + ", you are " + age + " years old"
 }
-
 ```
-## Arrow Functions
-```ts
 
+## Arrow Functions
+
+```ts
 // normal arrow function (single line)
 var sayHello = (): void -> print("Hello")
-
 
 // normal arrow function (multiple lines)
 var sayHello = (): void -> {
@@ -207,12 +204,13 @@ const person = {
     return 20
   }
 }
-  ```
+```
 
 
 ## Classes
 
 ### Basic class
+
 ```ts
 class Person {
   // constructor
@@ -233,7 +231,7 @@ var person = new Person("John", 20)
 // with named parameters
 
 var person = new Person(name: "John", age: 20)
-  ```
+```
 
 ### Static class
 ```ts
@@ -259,19 +257,17 @@ class NoConstructableClass {
 const message: str = NoConstructableClass()
 
 print(message) // Hello world
-  ```
+```
 
 ## Inheritance
 
 ```ts
-
 class Person {
   // constructor
   constructor(name: str, age: int) {
     this.name = name
     this.age = age
   }
-
   // method
   sayHello () {
     print("Hello " + this.name + ", you are " + this.age + " years old")
@@ -341,6 +337,7 @@ fn sayHello<T>(name: T): T {
   return "Hello " + name
 }
 ```
+
 ```ts
 // use generic function
 
@@ -352,9 +349,6 @@ var sayHello = <T>(name: T): T -> "Hello " + name
 
 // use generic arrow function
 var name: str = sayHello<str>("John")
-
-// generic class
-
 ```
 
 # in progress...

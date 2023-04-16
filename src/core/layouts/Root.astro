@@ -1,0 +1,32 @@
+---
+import Footer from '#components/layout/Footer.astro'
+import Navbar from '#components/layout/Navbar.astro'
+import Fonts from '#components/layout/Fonts.astro'
+import '#theme/globals.scss'
+import metadata from '#utils/metadata'
+import Header from '#components/layout/Header.astro'
+
+type Props = Metadata
+
+const props = Astro.props
+const { title } = metadata(props)
+---
+
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+    <meta name='viewport' content='width=device-width' />
+    <meta name='generator' content={Astro.generator} />
+    <title>{title}</title>
+    <Fonts />
+  </head>
+  <body class='dark'>
+    <Navbar />
+    <Header />
+    <div class='container'>
+      <slot />
+    </div>
+    <Footer />
+  </body>
+</html>

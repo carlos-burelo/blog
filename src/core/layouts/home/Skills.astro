@@ -1,0 +1,87 @@
+---
+import Section from '#components/elements/Section.astro'
+import { t } from '#constants/data'
+import { SKILLS } from '#constants/user'
+---
+
+<Section title={t.skills.title}>
+  <section class='skillContainer'>
+    <section class='skills'>
+      <h3 class='title'>{t.skills.subTitle}</h3>
+      <div class='icons'>
+        {
+          SKILLS.map(Icon => (
+            <div class='icon'>
+              <Icon />
+            </div>
+          ))
+        }
+      </div>
+    </section>
+    <section class='text'>
+      <h3 class='legend'>
+        Actualmente aprendiendo
+        <em class='orange'>Rust🦀</em>
+        para hacer aplicaciones mucho mas
+        <em class='blue'>rapidas🚀</em>
+      </h3>
+    </section>
+  </section>
+</Section>
+
+<style lang='scss'>
+  .skillContainer {
+    display: grid;
+    align-items: center;
+    gap: 2em;
+    @include tablet {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .legend {
+    font-size: 2em;
+    @include tablet {
+      font-size: 2.8em;
+    }
+    > * {
+      font-weight: inherit;
+    }
+  }
+  .blue {
+    color: var(--blue);
+  }
+  .orange {
+    color: var(--orange);
+  }
+  .skills {
+    @include grid-base;
+  }
+  .text {
+    text-align: center;
+  }
+  .title {
+    text-align: center;
+    font-size: 2em;
+  }
+  .icons {
+    @include grid-base;
+    grid-template-columns: repeat(4, 1fr);
+    @include tablet {
+      justify-self: center;
+    }
+  }
+  .icon {
+    font-size: 40px;
+    color: var(--colorTitle);
+    border-radius: 0.25em;
+    border: solid 1px var(--borderColorCard);
+    aspect-ratio: 1/1;
+    @include flex;
+    @include fullContent;
+    @include fold {
+      aspect-ratio: initial;
+      padding: 20px;
+      width: fit-content;
+    }
+  }
+</style>

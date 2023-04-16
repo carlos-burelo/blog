@@ -1,0 +1,57 @@
+---
+interface Props {
+  start: number
+  end: number
+  size: number
+  total: number
+  currentPage: number
+  lastPage: number
+  url: {
+    current: string
+    next?: string | undefined
+    prev?: string | undefined
+  }
+}
+
+const { url, currentPage, lastPage } = Astro.props
+
+const page = (url: string = '/blog') => {
+  return url === '/blog/' ? '/blog' : url
+}
+---
+
+<section class='navigation'>
+  <span>
+    Page {currentPage} of {lastPage}
+  </span>
+  <a
+    aria-disabled={Boolean(url.prev)}
+    class:list={['link', !url.prev && 'disabled']}
+    href={page(url.prev)}
+  >
+    ◀️
+  </a>
+  <a
+    aria-disabled={!url.next}
+    class:list={['link', !url.next && 'disabled']}
+    href={page(url.next)}
+  >
+    ▶️
+  </a>
+</section>
+
+<style lang='scss'>
+  .navigation {
+    @include align-center;
+    gap: 1rem;
+    font-size: 1.1em;
+  }
+  .link {
+    font-size: 1em;
+  }
+
+  .link.disabled {
+    pointer-events: none;
+    filter: grayscale(100%);
+  }
+</style>

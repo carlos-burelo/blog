@@ -1,0 +1,20 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import PostCard from './PostCard.astro'
+
+export interface Props {
+  list: CollectionEntry<'posts'>[]
+}
+
+const { list } = Astro.props
+---
+
+<section class='list'>
+  {list.map(post => <PostCard {...post} />)}
+</section>
+
+<style lang='scss'>
+  .list {
+    @include grid-base;
+  }
+</style>

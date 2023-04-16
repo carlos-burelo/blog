@@ -1,0 +1,80 @@
+---
+const props = Astro.props
+---
+
+<script src='#scripts/code.ts'></script>
+
+<pre
+  {...props}>
+  <button type="button" title="Copy code">📋</button>
+  <slot />
+</pre>
+
+<style lang='scss'>
+  pre {
+    background-color: var(--backgroundColorPre) !important;
+    border-radius: var(--borderRadiusCard);
+    border: 0.1em solid var(--borderColorCard);
+    overflow-x: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    :global(code) {
+      display: grid;
+      counter-reset: line;
+    }
+    :global(code > span) {
+      padding: 0 1rem;
+      line-height: 1.8;
+      tab-size: 4;
+      border-left: 0.2em solid transparent;
+      &::before {
+        display: inline-block;
+        width: 1rem;
+        margin-right: 2rem;
+        color: #7f848e;
+        text-align: right;
+        content: counter(line);
+        counter-increment: line;
+      }
+      &.highlighted {
+        background-color: var(--backgroundColorSelection);
+        border-left-color: var(--colorPrimary);
+      }
+    }
+  }
+  button {
+    position: absolute;
+    top: 0.2em;
+    right: 0.2em;
+    font-size: 1em;
+    width: 2em;
+    height: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  :global(div[data-rehype-pretty-code-fragment]) {
+    position: relative;
+  }
+  :global(div[data-rehype-pretty-code-fragment]) {
+    &:has(div[data-rehype-pretty-code-title]) {
+      pre {
+        border-radius: 0 0 var(--borderRadiusCard) var(--borderRadiusCard);
+      }
+    }
+  }
+  :global(div[data-rehype-pretty-code-title]) {
+    padding: 0.5em 1em;
+    font-size: 1em;
+    font-weight: var(--fontWeightRemark);
+    color: var(--colorTitle);
+    letter-spacing: 0.7px;
+    border: solid 1px var(--borderColorCard);
+    border-bottom: none;
+    border-radius: var(--borderRadiusCard) var(--borderRadiusCard) 0 0;
+    &::before {
+      content: '📄';
+    }
+  }
+</style>

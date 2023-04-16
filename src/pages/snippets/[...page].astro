@@ -1,19 +1,25 @@
 ---
 import Layout from '#layout'
-import type { GetStaticPaths } from 'astro'
-import { getCollection } from 'astro:content'
-import SnippetLayout from '#containers/snippets/Layout.astro'
+import SnippetCard from '#layouts/snippets/SnippetCard.astro'
+import { getSnippets } from '#libs/paths'
 
-export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
-  const snippets = await getCollection('snippets')
-  return paginate(snippets, { pageSize: 12 })
-}
+export const { getStaticPaths } = await getSnippets()
 
-export interface Props extends Paginated<'snippets'> {}
+type Props = Paginated<'snippets'>
 
 const { page } = Astro.props
 ---
 
 <Layout>
-  <SnippetLayout page={page} />
+  <div class='snippets'>
+    {page.data.map(snippet => <SnippetCard {...snippet} />)}
+  </div>
 </Layout>
+
+<style lang='scss'>
+  .snippets {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 1rem;
+  }
+</style>

@@ -1,0 +1,103 @@
+---
+import { parseDate } from '#utils/date'
+
+type Props = PageProps
+
+const { payload } = Astro.props
+const { createdAt, updatedAt, title } = payload.data
+const bodyLength = payload.body.length
+const createdAtDate = parseDate(createdAt)
+const updatedAtDate = parseDate(updatedAt)
+const wordsPerMinute = 200 // https://www.nngroup.com/articles/how-long-do-users-stay-on-web-pages/
+
+const words = payload.body.trim().split(' ').length
+const time = words / wordsPerMinute
+
+// round to 1 decimal places
+const aproxTime = Math.round(time * 10) / 10
+const readTime = aproxTime < 1 ? 0 : aproxTime
+---
+
+<header>
+  <a href='/blog'>Blog</a>
+  <h1>{title}</h1>
+  <section class='info'>
+    <section class='metadata'>
+      <time class='createdAt'>{createdAtDate}</time>
+      <span class='readTime'>{readTime} min read</span>
+      <span class='likes'></span>
+      <span class='comments'></span>
+    </section>
+    {
+      createdAtDate !== updatedAtDate && (
+        <span class='updatedAt'>
+          Last updated on <time>{updatedAtDate}</time>
+        </span>
+      )
+    }
+  </section>
+</header>
+
+<style lang='scss'>
+  header {
+    @include grid-base;
+    margin-bottom: 2em;
+  }
+
+  h1 {
+    font-size: 2rem;
+    font-weight: var(--fontWeightTitle);
+    line-height: 1.2;
+  }
+  .info {
+    @include grid-base;
+  }
+  .metadata {
+    @include align-center;
+    gap: 1em;
+    font-size: 0.9rem;
+    color: var(--colorText);
+  }
+  .createdAt::after {
+    content: '/';
+    margin: 0 0.5em;
+  }
+  .updatedAt {
+    background-color: var(--backgroundColorSelectionActive);
+    width: fit-content;
+    padding: 0.3em 0.8em;
+    border-radius: var(--borderRadiusCard);
+    color: var(--colorPrimary);
+    font-weight: var(--fontWeightRemark);
+  }
+  a {
+    --size: 1.1em;
+    --arrow-direction: -1;
+    --arrow-translation: -0.25em;
+    --hover-color: unset;
+    --icon: url(data\:image\/svg\+xml\;base64\,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSJ2YXIoLS1zaXplLCAxLjA1ZW0pIiBoZWlnaHQ9InZhcigtLXNpemUsIDEuMDVlbSkiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48bGluZSB4MT0iNSIgeTE9IjEyIiB4Mj0iMTkiIHkyPSIxMiI\+PC9saW5lPjxwb2x5bGluZSBwb2ludHM9IjEyIDUgMTkgMTIgMTIgMTkiPjwvcG9seWxpbmU\+PC9zdmc\+);
+    font-size: inherit;
+    line-height: inherit;
+    color: var(--colorText);
+    font-weight: var(--fontWeightRemark);
+    word-break: break-word;
+    text-decoration: none;
+    outline: none;
+    transition: border-color 0.3s ease 0s, color 0.3s ease 0s;
+    &::before {
+      content: '';
+      display: inline-block;
+      vertical-align: middle;
+      width: 1.05em;
+      height: 1.05em;
+      -webkit-mask-image: var(--icon);
+      -webkit-mask-repeat: no-repeat;
+      background-color: currentcolor;
+      margin-right: 0.18em;
+      transition: transform 0.4s ease 0s;
+      transform: translateY(-2px)
+        translateX(var(--hover-translation-distance, 0px))
+        scaleX(var(--arrow-direction, 1));
+    }
+  }
+</style>

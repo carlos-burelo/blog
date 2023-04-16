@@ -1,0 +1,44 @@
+---
+import Button from '#components/elements/Button.astro'
+import Section from '#components/elements/Section.astro'
+import Gallery from './Gallery.astro'
+import { AUTHOR_DESCRIPTION, t } from '#constants/data'
+---
+
+<Section title={t.about.title} class='section'>
+  <Gallery />
+  <section class='info'>
+    <h3 class='title'>{t.about.subTitle}</h3>
+    <p class='bio'>
+      {AUTHOR_DESCRIPTION}
+    </p>
+    <div class='buttons'>
+      <Button href='/works' text={t.about.worksButton} />
+      <Button href='/contact' text={t.about.contactButton} color='blue' />
+    </div>
+  </section>
+</Section>
+
+<style lang='scss'>
+  .section {
+    gap: 2em;
+    @include tablet {
+      grid-template-columns: 1fr 2fr;
+    }
+  }
+  .info {
+    @include grid-base;
+    @include align-start;
+  }
+  .bio {
+    font-size: 1.2rem;
+  }
+  .title {
+    font-size: 2rem;
+    font-weight: var(--fontWeightTitle);
+  }
+  .buttons {
+    display: flex;
+    gap: 1em;
+  }
+</style>

@@ -1,0 +1,101 @@
+---
+import Avatar from '#components/elements/Avatar.astro'
+import Time from '#components/elements/Time.astro'
+import Link from '#components/natives/Link.astro'
+import type { CollectionEntry } from 'astro:content'
+
+export type Props = CollectionEntry<'posts'>
+
+const { slug, data } = Astro.props
+---
+
+<div class='card'>
+  <header class='author'>
+    <Avatar size={35} />
+    <div class='info'>
+      <h3 class='name'>Carlos Burelo</h3>
+      <Time date={data.createdAt} class='date' />
+    </div>
+  </header>
+  <Link title={data.title} href={`/blog/${slug}`}>
+    <h2 class='title'>{data.title}</h2>
+  </Link>
+  <Link href='/blog' class='category' text={data.category} />
+</div>
+
+<style lang='scss'>
+  .card {
+    display: grid;
+    gap: 1em;
+    align-content: center;
+    align-content: space-between;
+    padding: 1em;
+    scroll-snap-align: start;
+    min-height: 250px;
+    border: solid 0.1em var(--borderColorCard);
+    border-radius: var(--borderRadiusCard);
+    @include tablet {
+      grid-template-areas:
+        'title title'
+        'author category';
+      justify-content: space-between;
+      min-height: 200px;
+    }
+  }
+  .author {
+    display: flex;
+    gap: 0.5em;
+    align-items: center;
+    justify-content: flex-start;
+
+    @include tablet {
+      grid-area: author;
+    }
+  }
+  .info {
+    @include tablet {
+      @include align-center;
+      gap: 1em;
+    }
+  }
+  .name {
+    font-size: 1em;
+    font-weight: var(--fontWeightRemark);
+  }
+  .title {
+    font-size: 1.5em;
+    line-height: 1.5em;
+    font-weight: var(--fontWeightTitle);
+    @include textCut;
+
+    @include tablet {
+      grid-area: title;
+      font-size: 1.8em;
+    }
+
+    &:hover {
+      color: var(--foreground-title);
+    }
+  }
+  .category {
+    @include flex-center;
+    background-color: var(--backgroundColorButton);
+    border-radius: 0.5em;
+    padding: 0.5em 1em;
+    height: fit-content;
+    font-size: 0.8em;
+    align-self: center;
+    color: var(--colorButton);
+    font-weight: var(--fontWeightButton);
+    @include tablet {
+      grid-area: category;
+    }
+    &:hover {
+      background-color: var(--backgroundColorButtonHover);
+    }
+  }
+  .date {
+    font-size: 0.75em;
+    color: var(--colorText);
+  }
+</style>

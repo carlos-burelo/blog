@@ -1,0 +1,41 @@
+---
+import NavLink from '#components/elements/NavLink.astro'
+import GitHub from '#components/svg/icons/GitHub.astro'
+import { GITHUB_PROFILE } from '#constants/data'
+---
+
+<footer>
+  <h2 class='logo'>Carlos Burelo</h2>
+  <div class='links'>
+    <NavLink to='/' text='Home' />
+    <NavLink to='/blog' text='Blog' />
+    <NavLink to='/works' text='Works' />
+    <NavLink to='/snippets' text='Snippets' />
+  </div>
+  <a
+    class='social'
+    href={GITHUB_PROFILE}
+    title='Github profile'
+    aria-hidden='true'
+  >
+    <GitHub />
+  </a>
+</footer>
+
+<style lang='scss'>
+  footer {
+    padding-inline: var(--paddingLayout);
+    height: var(--heightFooter);
+    @include flex(center, space-between, var(--separation), column);
+    @include tablet {
+      flex-direction: row;
+    }
+  }
+  .links {
+    @include flex;
+    gap: 1em;
+  }
+  .social {
+    font-size: 1.5em;
+  }
+</style>

@@ -1,19 +1,53 @@
 ---
-import BlogLayout from '#containers/blog/Layout.astro'
+import Navigation from '#components/elements/Navigation.astro'
 import Layout from '#layout'
-import type { GetStaticPaths } from 'astro'
-import { getCollection } from 'astro:content'
+import PostCard from '#layouts/blog/PostCard.astro'
+import PostList from '#layouts/blog/PostList.astro'
+import PostSlider from '#layouts/blog/PostSlider.astro'
+import RecentActivity from '#layouts/blog/RecentActivity.astro'
+import { getPosts } from '#libs/paths'
 
-export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
-  const posts = await getCollection('posts')
-  return paginate(posts, { pageSize: 3 })
-}
+export const { getStaticPaths, latest } = await getPosts()
 
-export interface Props extends Paginated<'posts'> {}
+type Props = Paginated<'posts'>
 
 const { page } = Astro.props
+const { data: posts } = page
 ---
 
 <Layout>
-  <BlogLayout ctx={page} />
+  <section class='postContainer'>
+    <div class='posts'>
+      <h2>Featured post</h2>
+      <PostSlider posts={latest} />
+      <header class='postHeader'>
+        <h2>All post</h2>
+        <Navigation {...page} />
+      </header>
+      <PostList list={posts} />
+    </div>
+    <!-- <div class='activity'>
+      <h2>Recent activity</h2>
+      <RecentActivity />
+    </div> -->
+  </section>
 </Layout>
+
+<style lang='scss'>
+  .postContainer {
+    @include grid-base;
+    align-items: start;
+    // @include tablet {
+    //   grid-template-columns: 2fr 1.2fr;
+    // }
+  }
+
+  .posts,
+  .activity {
+    @include grid-base;
+  }
+
+  .postHeader {
+    @include space-between;
+  }
+</style>

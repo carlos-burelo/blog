@@ -1,0 +1,29 @@
+---
+import NavLink from '#components/elements/NavLink.astro'
+---
+
+<nav id='navigation' class='navbar'>
+  <NavLink to='/' text='Home' />
+  <NavLink to='/blog' text='Blog' />
+  <NavLink to='/works' text='Works' />
+  <NavLink to='/snippets' text='Snippets' />
+</nav>
+
+<style lang='scss'>
+  .navbar {
+    display: none;
+    position: fixed;
+    top: calc(var(--heightHeader) + 0.5rem);
+    right: var(--paddingLayout);
+    background-color: var(--backgroundColorHeader);
+    backdrop-filter: var(--backdropFilter);
+    border-radius: 0.5rem;
+    padding: 1em 0.5em;
+    gap: 0.5em;
+    border: solid 0.1rem var(--borderColorHeader);
+    z-index: var(--zIndexHeader);
+  }
+  .active {
+    display: grid;
+  }
+</style>

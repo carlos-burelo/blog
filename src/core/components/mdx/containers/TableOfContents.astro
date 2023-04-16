@@ -1,0 +1,47 @@
+---
+import Link from '#components/natives/Link.astro'
+import type { MarkdownHeading } from 'astro'
+
+export interface Props {
+  raw: MarkdownHeading[]
+}
+const { raw } = Astro.props
+---
+
+<section class='table'>
+  <h2>Table of Contents</h2>
+  <ul class='list'>
+    {
+      raw.map(heading => (
+        <li class='item' style={`--tabs: ${heading.depth - 1}em`}>
+          <Link href={`#${heading.slug}`} text={heading.text} />
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style lang='scss'>
+  .table {
+    position: sticky;
+    top: var(--heightHeader);
+  }
+  .list {
+    margin-left: 1em;
+    line-height: 1.8;
+  }
+  .item {
+    margin-left: var(--tabs);
+    a {
+      font-size: 1em;
+      color: var(--colorText);
+      padding: 0.2em 0.4em;
+      border-radius: 0.2em;
+      transition: background-color 0.2s ease;
+      &:hover {
+        background-color: var(--backgroundColorButtonHover);
+        color: var(--colorTitle);
+      }
+    }
+  }
+</style>

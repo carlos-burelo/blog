@@ -13,5 +13,8 @@
     // // "public": true,
     // ".gitignore": true,
     // // "pnpm-lock.yaml": true,
-  }
+  },
+  "cssVariables.lookupFiles": [
+    "./src/core/theme/variables.scss"
+  ]
 }

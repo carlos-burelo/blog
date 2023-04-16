@@ -1,0 +1,57 @@
+---
+import Link from '#components/natives/Link.astro'
+import * as Logos from '#components/svg/logos'
+import { colorLanguageMap } from '#constants/globals'
+import { camelize } from '#utils/text'
+import type { CollectionEntry } from 'astro:content'
+
+export type Props = CollectionEntry<'snippets'>
+
+const {
+  data: { title, lang },
+  slug,
+} = Astro.props
+
+const base = colorLanguageMap[lang.toLowerCase()]
+const varColor = camelize(`backdrop-${base}`)
+
+const backgroundColor = `var(--${varColor})`
+const color = `var(--${base})`
+const Icon = (Logos as any)[lang]
+---
+
+<div class='card'>
+  <Link href={`/snippets/${slug}`} class='title'>
+    <h3 class='title'>{title}</h3>
+  </Link>
+  <span class='lang' style={{ backgroundColor, color }}>
+    <Icon />
+  </span>
+</div>
+
+<style lang='scss'>
+  .card {
+    min-height: 130px;
+    position: relative;
+    overflow: hidden;
+    align-items: center;
+    border-radius: var(--borderRadiusCard);
+    border: solid 0.1em var(--borderColorCard);
+    padding: 1em;
+  }
+  .title {
+    @include textCut;
+    font-size: 1.1em;
+    line-height: 1.4;
+    font-weight: var(--fontWeightSubTitle);
+  }
+  .lang {
+    position: absolute;
+    right: -0.5em;
+    bottom: -0.5em;
+    z-index: -1;
+    padding: 1em;
+    font-size: 2em;
+    border-radius: 1000px;
+  }
+</style>

@@ -1,0 +1,35 @@
+---
+import Link from '#components/natives/Link.astro'
+
+export interface Props {
+  to: string
+  text: string
+}
+
+const { text, to } = Astro.props
+
+const { pathname } = new URL(Astro.request.url)
+
+const active = pathname === to ? 'active' : ''
+---
+
+<Link class:list={['navlink', active]} href={to} text={text} />
+
+<style lang='scss'>
+  .navlink {
+    color: var(--colorText);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      color: var(--colorTitle);
+      background-color: var(--backgroundColorNavLinkHover);
+    }
+  }
+
+  .active {
+    font-weight: var(--fontWeightRemark);
+    color: var(--colorTitle);
+    background-color: var(--backgroundColorNavLinkHover);
+  }
+</style>

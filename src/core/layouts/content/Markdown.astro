@@ -1,0 +1,26 @@
+---
+import components from '#components/mdx'
+import Metadata from './Metadata.astro'
+
+export type Props = PageProps
+const {
+  payload,
+  payload: { data },
+} = Astro.props
+const { Content } = await payload.render()
+---
+
+<article>
+  <Metadata payload={payload} />
+  <Content components={components} />
+</article>
+
+<style lang='scss'>
+  article {
+    max-width: 65ch;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+</style>

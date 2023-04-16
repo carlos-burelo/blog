@@ -1,0 +1,51 @@
+---
+import { Image } from '@astrojs/image/components'
+import type { CollectionEntry } from 'astro:content'
+import defaultImage from '#assets/hero.webp'
+
+type Props = CollectionEntry<'works'>
+
+const { data } = Astro.props
+---
+
+<div class='card'>
+  <Image
+    src={defaultImage}
+    width={300}
+    height={230}
+    alt={data.title}
+    class='image'
+  />
+  <div class='info'>
+    <h3 class='title'>
+      {data.title}
+    </h3>
+    <p class='description'>
+      {data.description}
+    </p>
+  </div>
+</div>
+
+<style lang='scss'>
+  .card {
+    @include card;
+    padding: 0;
+  }
+  .image {
+    object-fit: cover;
+    border-radius: var(--borderRadiusImage) var(--borderRadiusImage) 0 0;
+  }
+  .info {
+    padding: 1em;
+    display: grid;
+    gap: 0.5em;
+  }
+  .title {
+    font-size: 1.4em;
+    @include textCut(1);
+  }
+  .description {
+    font-size: 1em;
+    @include textCut;
+  }
+</style>

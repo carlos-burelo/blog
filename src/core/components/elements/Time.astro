@@ -1,0 +1,21 @@
+---
+import { parseDate } from '#utils/date'
+
+export interface Props extends astroHTML.JSX.TimeHTMLAttributes {
+  date: Date | string
+}
+
+const { date, ...attrs } = Astro.props
+
+const dateTime: Date = typeof date === 'string' ? new Date(date) : date
+---
+
+<time datetime={new Date(date).toLocaleString()} {...attrs}>
+  {parseDate(dateTime)}
+</time>
+
+<style>
+  time {
+    font-style: italic;
+  }
+</style>

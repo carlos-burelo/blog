@@ -1,0 +1,50 @@
+---
+import defaultImage from '#assets/hero.webp'
+import { Image } from '@astrojs/image/components'
+
+const list = [0, 1, 2, 3]
+---
+
+<div class='gallery'>
+  {
+    list.map(() => (
+      <Image
+        class='image'
+        src={defaultImage}
+        alt='hero'
+        width={200}
+        height={200}
+        aspectRatio={1 / 1}
+      />
+    ))
+  }
+</div>
+
+<style lang='scss'>
+  .gallery {
+    @include grid-base;
+    grid-template-columns: repeat(4, 1fr);
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 1rem;
+    justify-content: center;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    & > * {
+      object-fit: cover;
+      scroll-snap-align: start;
+      min-width: 300px;
+      aspect-ratio: 1 / 1 !important;
+    }
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      direction: rtl;
+      overflow-x: initial;
+      & > * {
+        min-width: 200px;
+      }
+    }
+  }
+</style>

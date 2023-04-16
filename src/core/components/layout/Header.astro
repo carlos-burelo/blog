@@ -1,0 +1,75 @@
+---
+import Link from '#components/natives/Link.astro'
+import Logo from '#components/svg/icons/Logo.astro'
+import Navbar from './Navbar.astro'
+---
+
+<script src='#scripts/theme.ts'></script>
+<script src='#scripts/navigation.ts'></script>
+
+<header>
+  <Link href='/' class='logo'>
+    <Logo />
+  </Link>
+  <h3 id='magicText'></h3>
+  <div class='commands'>
+    <button class='menu'>🕹️</button>
+    <button class='theme'>🌚</button>
+  </div>
+  <Navbar />
+</header>
+
+<style lang='scss'>
+  header {
+    height: var(--heightHeader);
+    padding-inline: var(--paddingLayout);
+    background-color: var(--backgroundColorHeader);
+    backdrop-filter: var(--backdropFilter);
+    @include flex(center, space-between);
+    @include position(sticky, 0, 0, 0, 0);
+    border-bottom: 0.1em solid var(--borderColorHeader);
+    z-index: var(--zIndexHeader);
+    margin-bottom: 1em;
+  }
+  .commands {
+    display: flex;
+    gap: 0.8em;
+  }
+  button {
+    aspect-ratio: 1;
+    padding: 0.6rem;
+    position: relative;
+  }
+
+  .menu::after,
+  .theme::after {
+    position: absolute;
+    top: 120%;
+    right: 50%;
+    transform: translateX(50%);
+    font-size: 0.7em;
+    white-space: nowrap;
+    background-color: var(--colorTitle);
+    color: var(--backgroundColorBody);
+    padding: 0.5em;
+    border-radius: 0.5em;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .menu::after {
+    content: 'Open Menu';
+  }
+  .theme::after {
+    content: 'Toggle Theme ';
+  }
+
+  .menu:hover::after,
+  .theme:hover::after {
+    opacity: 1;
+  }
+
+  .logo {
+    font-size: 1.4em;
+  }
+</style>

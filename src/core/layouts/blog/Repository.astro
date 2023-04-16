@@ -1,0 +1,55 @@
+---
+import LanguageMatch from '#components/elements/LanguageMatch.astro'
+import Time from '#components/elements/Time.astro'
+import Link from '#components/natives/Link.astro'
+import { GitHub } from '#components/svg'
+
+export interface Props {
+  full_name: string
+  description: string
+  updated_at: string
+  html_url: string
+  language: string
+}
+
+const { full_name, description, updated_at, html_url, language } = Astro.props
+---
+
+<div class='card'>
+  <Link href={html_url} target='_blank'>
+    <h2 class='title'>{full_name}</h2>
+  </Link>
+
+  <p class='description'>{description}</p>
+  <footer class='footer'>
+    <GitHub />
+    <LanguageMatch language={language} />
+    <Time date={updated_at} class='time' />
+  </footer>
+</div>
+
+<style lang='scss'>
+  .card {
+    display: grid;
+    gap: 1em;
+    align-content: space-between;
+    grid-template-rows: auto 1fr auto;
+    padding: 1em;
+    border-radius: 0.5em;
+    border: solid 0.1em var(--borderColorCard);
+  }
+  .title {
+    font-weight: var(--fontWeightSubTitle);
+    font-size: 1.3em;
+    @include textCut(1);
+  }
+  .description {
+    font-size: 0.8em;
+    @include textCut;
+  }
+  .footer {
+    @include align-center;
+    gap: 1rem;
+    font-size: 0.8em;
+  }
+</style>

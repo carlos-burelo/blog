@@ -1,0 +1,33 @@
+---
+const props = Astro.props
+---
+
+<table {...props}>
+  <slot />
+</table>
+
+<style lang='scss'>
+  table {
+    width: 100%;
+    border-spacing: 0;
+    border: 1px solid var(--borderColorCard);
+    border-radius: var(--borderRadiusCard);
+    font-size: 0.9em;
+
+    :global(th),
+    :global(td) {
+      padding: 0.7em;
+      border-right: 1px solid var(--borderColorCard);
+      border-bottom: 1px solid var(--borderColorCard);
+    }
+
+    :global(th:last-child),
+    :global(td:last-child) {
+      border-right: none;
+    }
+
+    :global(tr:last-child td) {
+      border-bottom: none;
+    }
+  }
+</style>

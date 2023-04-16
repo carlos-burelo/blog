@@ -1,0 +1,16 @@
+---
+import Repository from './Repository.astro'
+import { getRepositories } from '#services/repositories'
+
+const repos = await getRepositories()
+---
+
+<aside class='aside'>
+  {repos.slice(0, 5).map(repo => <Repository {...repo} />)}
+</aside>
+
+<style lang='scss'>
+  .aside {
+    @include grid-base;
+  }
+</style>

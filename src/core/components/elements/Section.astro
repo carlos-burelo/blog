@@ -1,0 +1,36 @@
+---
+export interface Props extends astroHTML.JSX.HTMLAttributes {
+  title: string
+}
+
+const { title, ...props } = Astro.props
+---
+
+<section class='section'>
+  <h2 class='title'>{title}</h2>
+  <div class:list={[props.class]}>
+    <slot />
+  </div>
+</section>
+
+<style lang='scss'>
+  .section,
+  .container {
+    @include grid-base;
+  }
+  .section {
+    margin-top: 4rem;
+  }
+  .container {
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .title {
+    text-align: center;
+    font-size: 3em;
+    font-weight: var(--fontWeightTitle);
+    margin-bottom: 2rem;
+  }
+</style>
