@@ -10,6 +10,26 @@ const {
 const { Content } = await payload.render()
 ---
 
+<head>
+  <link
+  rel='preload'
+  href='/code.woff2'
+  as='font'
+  type='font/woff2'
+  crossorigin='anonymous'
+/>
+
+<style is:inline>
+    @font-face {
+    font-family: 'Cascadia Code';
+    src: url('/code.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+</style>
+</head>
+
 <article>
   <Metadata payload={payload} />
   <Content components={components} />
